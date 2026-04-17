@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-headline: "Playfair Display", serif;
+  --font-body: "Montserrat", sans-serif;
+
+  --color-outline: #818178;
+  --color-surface-container-highest: #eae9dd;
+  --color-on-surface-variant: #64655c;
+  --color-on-tertiary-fixed-variant: #850019;
+  --color-secondary-fixed: #ffdcbf;
+  --color-primary-dim: #6545a7;
+  --color-tertiary-dim: #b20927;
+  --color-on-primary-fixed: #330773;
+  --color-on-primary: #ffffff;
+  --color-error-dim: #770326;
+  --color-surface-variant: #eae9dd;
+  --color-on-tertiary-fixed: #4a0009;
+  --color-inverse-on-surface: #9e9d98;
+  --color-on-primary-fixed-variant: #513092;
+  --color-on-surface: #373831;
+  --color-primary: #7252b4;
+  --color-primary-fixed: #cdb5ff;
+  --color-on-secondary: #ffffff;
+  --color-inverse-primary: #b594fc;
+  --color-primary-fixed-dim: #c1a4ff;
+  --color-background: #fffcf7;
+  --color-error-container: #f76a80;
+  --color-secondary-container: #ffdcbf;
+  --color-secondary: #955500;
+  --color-inverse-surface: #0e0e0c;
+  --color-on-secondary-fixed-variant: #884d00;
+  --color-surface-container-high: #f0eee5;
+  --color-surface-dim: #e3e3d6;
+  --color-outline-variant: #babaaf;
+  --color-on-tertiary-container: #740014;
+  --color-surface-container-low: #fcf9f3;
+  --color-error: #b3374e;
+  --color-surface: #fffcf7;
+  --color-tertiary-fixed-dim: #ff8888;
+  --color-primary-container: #cdb5ff;
+  --color-on-primary-container: #482689;
+  --color-tertiary-fixed: #ff9e9d;
+  --color-surface-tint: #7252b4;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container: #f6f4ec;
+  --color-on-tertiary: #ffffff;
+  --color-on-secondary-container: #7a4500;
+  --color-on-error: #ffffff;
+  --color-secondary-fixed-dim: #ffca9b;
+  --color-secondary-dim: #834a00;
+  --color-on-secondary-fixed: #603500;
+  --color-surface-bright: #fffcf7;
+  --color-on-error-container: #68001f;
+  --color-tertiary-container: #ff9e9d;
+  --color-on-background: #373831;
+  --color-tertiary: #c41d31;
+  --color-deep-charcoal: #1a1a1a;
+}
+
+@utility silk-bg {
+  background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDW0bnNCP_-1R6uGwAj6G1p4nHRZN2YXmOqExUxU6x4RrhMIrybna7DtUJPGHDbCbFDwnOe3yl9-HNEwurQWaSaqL4yNGLJmgGrvDN7USk5huKN-S0EXRSwAjNvJXCmNEjXWw09dUAOcU8ocN-1C9Y4SSdqry7IbUfvkiTE3cev1s2ac26SmjB87UENmRdYT1aX6toB3khxFDEqVWMUOk_uXhQUDmCEeZCvgdPc2LYGdzGL4tf9Et0Ng88Fs_ClAQWLahYwCWv5yaw");
+  background-repeat: repeat;
+  background-size: cover;
+  background-blend-mode: multiply;
+}
+
+@utility text-outline {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.75);
+  color: transparent;
+}
+
+@utility hexagon-shape {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+@utility editorial-gradient {
+  background: radial-gradient(circle at center, #1e1b4b 0%, #0f0f14 100%);
+}
+
+@utility glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+@utility video-overlay-gradient {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 40%);
+}
+
+@utility silk-texture {
+  background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDW0bnNCP_-1R6uGwAj6G1p4nHRZN2YXmOqExUxU6x4RrhMIrybna7DtUJPGHDbCbFDwnOe3yl9-HNEwurQWaSaqL4yNGLJmgGrvDN7USk5huKN-S0EXRSwAjNvJXCmNEjXWw09dUAOcU8ocN-1C9Y4SSdqry7IbUfvkiTE3cev1s2ac26SmjB87UENmRdYT1aX6toB3khxFDEqVWMUOk_uXhQUDmCEeZCvgdPc2LYGdzGL4tf9Et0Ng88Fs_ClAQWLahYwCWv5yaw);
+  background-repeat: repeat;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom Vertical Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-on-surface-variant);
+  border-radius: 10px;
+  border: 3px solid var(--color-background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* Firefox Support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-on-surface-variant) var(--color-background);
+}
