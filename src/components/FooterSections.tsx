@@ -186,6 +186,19 @@ export function SocialSpotlight() {
   );
 }
 
+// Optimized variants for performance
+const smoothFadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.8, 
+      ease: [0.22, 1, 0.36, 1] // Efficient quintic ease
+    }
+  }
+};
+
 function SpotlightVideo({ post, index }: { post: string, index: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -231,10 +244,10 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
     <motion.div 
       ref={containerRef}
       onClick={handleTogglePlay}
-      variants={fadeUpVariant}
-      whileHover={{ y: -10 }}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="relative group flex-shrink-0 w-[42vw] md:w-[32vw] lg:w-[calc(20%-20px)] snap-start aspect-[9/16] overflow-hidden border border-on-surface/10 hover:shadow-xl shadow-sm cursor-pointer bg-surface-container rounded-sm"
+      variants={smoothFadeUp}
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="relative group flex-shrink-0 w-[42vw] md:w-[32vw] lg:w-[calc(20%-20px)] snap-start aspect-[9/16] overflow-hidden border border-on-surface/10 hover:shadow-xl shadow-sm cursor-pointer bg-surface-container rounded-sm will-change-transform"
     >
       {/* Premium Shimmer Skeleton */}
       {!isReady && (
