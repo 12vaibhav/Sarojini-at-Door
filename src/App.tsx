@@ -16,8 +16,8 @@ const MasterpieceCollection = lazy(() => import("./components/ProductSections").
 const PromoBanner = lazy(() => import("./components/ProductSections").then(module => ({ default: module.PromoBanner })));
 
 const CuratorStory = lazy(() => import("./components/FooterSections").then(module => ({ default: module.CuratorStory })));
-const SocialSpotlight = lazy(() => import("./components/FooterSections").then(module => ({ default: module.SocialSpotlight })));
-const Testimonials = lazy(() => import("./components/FooterSections").then(module => ({ default: module.Testimonials })));
+const SocialSpotlight = lazy(() => import("./components/SocialSpotlight").then(module => ({ default: module.SocialSpotlight })));
+const Testimonials = lazy(() => import("./components/Testimonials").then(module => ({ default: module.Testimonials })));
 const Newsletter = lazy(() => import("./components/FooterSections").then(module => ({ default: module.Newsletter })));
 const Footer = lazy(() => import("./components/FooterSections").then(module => ({ default: module.Footer })));
 
