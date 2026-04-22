@@ -154,7 +154,7 @@ export function SocialSpotlight() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 1 }}
-      className="pt-[140px] md:pt-[180px] lg:pt-[220px] pb-8 md:pb-8 lg:pb-8 relative overflow-hidden mt-[-100px] md:mt-[-150px] lg:mt-[-180px] z-50 bg-transparent"
+      className="pt-[40px] md:pt-[80px] lg:pt-[120px] pb-8 md:pb-8 lg:pb-8 relative overflow-hidden mt-[-100px] md:mt-[-150px] lg:mt-[-180px] z-50 bg-transparent"
       style={{
         maskImage: 'linear-gradient(to bottom, transparent, black 180px)',
         WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 180px)'
