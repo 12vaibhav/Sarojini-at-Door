@@ -5,20 +5,20 @@
 
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import { TrustBadges, Categories } from "./components/Sections";
 import { FaWhatsapp } from "react-icons/fa";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect, lazy, Suspense } from "react";
 
-// Lazy load heavy components
-const TrendingNow = lazy(() => import("./components/ProductSections").then(module => ({ default: module.TrendingNow })));
-const MasterpieceCollection = lazy(() => import("./components/ProductSections").then(module => ({ default: module.MasterpieceCollection })));
-const PromoBanner = lazy(() => import("./components/ProductSections").then(module => ({ default: module.PromoBanner })));
-
+// Lazy load every section for maximum mobile performance
+const TrustBadges = lazy(() => import("./components/TrustBadges").then(module => ({ default: module.TrustBadges })));
+const Categories = lazy(() => import("./components/Categories").then(module => ({ default: module.Categories })));
+const TrendingNow = lazy(() => import("./components/TrendingNow").then(module => ({ default: module.TrendingNow })));
+const MasterpieceCollection = lazy(() => import("./components/MasterpieceCollection").then(module => ({ default: module.MasterpieceCollection })));
+const PromoBanner = lazy(() => import("./components/PromoBanner").then(module => ({ default: module.PromoBanner })));
 const CuratorStory = lazy(() => import("./components/CuratorStory").then(module => ({ default: module.CuratorStory })));
 const SocialSpotlight = lazy(() => import("./components/SocialSpotlight").then(module => ({ default: module.SocialSpotlight })));
 const Testimonials = lazy(() => import("./components/Testimonials").then(module => ({ default: module.Testimonials })));
-const Newsletter = lazy(() => import("./components/FooterSections").then(module => ({ default: module.Newsletter })));
+const Newsletter = lazy(() => import("./components/Newsletter").then(module => ({ default: module.Newsletter })));
 const Footer = lazy(() => import("./components/FooterSections").then(module => ({ default: module.Footer })));
 
 const ProductPage = lazy(() => import("./components/ProductPage"));
@@ -61,8 +61,14 @@ export default function App() {
             transition={{ duration: 0.3 }}
           >
             <Hero />
-            <TrustBadges />
-            <Categories />
+            
+            <Suspense fallback={<div className="h-20 bg-surface animate-pulse" />}>
+              <TrustBadges />
+            </Suspense>
+
+            <Suspense fallback={<SectionSkeleton />}>
+              <Categories />
+            </Suspense>
             
             <Suspense fallback={<SectionSkeleton />}>
               <TrendingNow onProductClick={() => setView('product')} />
@@ -72,7 +78,7 @@ export default function App() {
               <MasterpieceCollection onProductClick={() => setView('product')} />
             </Suspense>
             
-            <Suspense fallback={<SectionSkeleton />}>
+            <Suspense fallback={<div className="h-40 bg-surface animate-pulse" />}>
               <PromoBanner />
             </Suspense>
             
