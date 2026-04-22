@@ -154,13 +154,12 @@ export function SocialSpotlight() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 1 }}
+      transition={{ duration: 1 }}
       className="pt-[40px] md:pt-[80px] lg:pt-[120px] pb-8 md:pb-8 lg:pb-8 relative overflow-hidden mt-[-100px] md:mt-[-150px] lg:mt-[-180px] z-50 bg-transparent"
-      style={{
-        maskImage: 'linear-gradient(to bottom, transparent, black 180px)',
-        WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 180px)'
-      }}
     >
       <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Standard CSS Gradient for high-performance blending */}
+        <div className="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-transparent z-10 h-[180px]" />
         <img 
           src="/homepage/second_section.webp" 
           alt="" 
