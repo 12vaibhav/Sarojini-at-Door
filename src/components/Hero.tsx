@@ -21,6 +21,8 @@ export default function Hero() {
           className="w-full h-full object-cover object-center md:object-[center_15%] opacity-90"
           src="/homepage/hero_section.webp"
           referrerPolicy="no-referrer"
+          loading="eager"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/95 via-transparent to-black/98"></div>
       </div>

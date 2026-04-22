@@ -88,6 +88,8 @@ export default function Navbar({ onHomeClick, view = 'home' }: { onHomeClick?: (
                 src="/Logo_T.svg" 
                 className="w-7 h-7 md:w-10 md:h-10 object-contain brightness-[1.5] contrast-[1.2] drop-shadow-[0_0_5px_rgba(255,255,255,0.4)]" 
                 alt="Logo" 
+                loading="eager"
+                fetchPriority="high"
               />
             </motion.div>
             <span className="transition-all duration-500 hidden sm:block">

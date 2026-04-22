@@ -149,6 +149,7 @@ export function Categories() {
                   className="w-full h-full object-cover"
                   src={cat.image}
                   referrerPolicy="no-referrer"
+                  loading="lazy"
                 />
 
                 {/* Cinematic Gradient */}

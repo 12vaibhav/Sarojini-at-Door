@@ -45,6 +45,7 @@ export function CuratorStory() {
                   className="w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] lg:group-hover:scale-105"
                   src="/Product%20Images/S1.webp"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -81,6 +82,7 @@ export function CuratorStory() {
                   className="w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] lg:group-hover:scale-105"
                   src="/Product%20Images/S2.webp"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -469,6 +471,7 @@ export function Footer() {
                     src="/Logo_T.svg" 
                     className="w-7 h-7 md:w-9 md:h-9 object-contain brightness-[1.5] contrast-[1.2] drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]" 
                     alt="Logo" 
+                    loading="lazy"
                   />
                 </div>
                 <span>Sarojini at Door</span>

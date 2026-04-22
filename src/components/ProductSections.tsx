@@ -175,6 +175,7 @@ export function TrendingNow({ onProductClick }: { onProductClick?: () => void })
                   className="w-full h-full object-cover"
                   src={product.image}
                   referrerPolicy="no-referrer"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-700"></div>
 
@@ -289,6 +290,7 @@ export function MasterpieceCollection({ onProductClick }: { onProductClick?: () 
                     className="w-full h-full object-cover"
                     src={product.image}
                     referrerPolicy="no-referrer"
+                    loading="lazy"
                   />
 
                   {/* Subtle Gradient Overlay */}
@@ -389,6 +391,7 @@ export function PromoBanner() {
           src="/homepage/mobile_banner.webp"
           alt="Promo Banner"
           className="w-full h-auto object-cover"
+          loading="lazy"
         />
       </picture>
     </section>
