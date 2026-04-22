@@ -14,7 +14,7 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <header ref={containerRef} className="relative h-screen md:h-[110vh] min-h-[600px] md:min-h-[850px] max-h-[1100px] w-full flex items-center justify-center overflow-hidden bg-surface">
+    <header ref={containerRef} className="relative h-screen md:h-[110vh] min-h-[600px] md:min-h-[850px] max-h-[1100px] w-full flex items-center justify-center overflow-hidden bg-black">
       <div className="absolute inset-0 z-0">
         <img
           alt="High fashion editorial model"
