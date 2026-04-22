@@ -171,7 +171,7 @@ export function SocialSpotlight() {
 
           <motion.div 
             ref={scrollRef}
-            className="grid grid-rows-2 grid-flow-col lg:flex lg:flex-row overflow-x-auto gap-4 md:gap-6 lg:gap-6 hide-scrollbar snap-x snap-mandatory pb-6 md:pb-6 lg:pb-6 pt-2 md:pt-4 lg:pt-4 px-4 md:px-12 scroll-pl-4 md:scroll-pl-12"
+            className="flex flex-row overflow-x-auto gap-4 md:gap-6 lg:gap-6 hide-scrollbar snap-x snap-mandatory pb-6 md:pb-6 lg:pb-6 pt-2 md:pt-4 lg:pt-4 px-4 md:px-12 scroll-pl-4 md:scroll-pl-12"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -248,7 +248,7 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
       variants={smoothFadeUp}
       whileHover={{ y: -8 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="relative group flex-shrink-0 w-[42vw] md:w-[32vw] lg:w-[calc(20%-20px)] snap-start aspect-[9/16] overflow-hidden border border-on-surface/10 hover:shadow-xl shadow-sm cursor-pointer bg-surface-container rounded-sm will-change-transform"
+      className="relative group flex-shrink-0 w-[calc(50vw-24px)] md:w-[32vw] lg:w-[calc(20%-20px)] snap-start aspect-[9/16] overflow-hidden border border-on-surface/10 hover:shadow-xl shadow-sm cursor-pointer bg-surface-container rounded-sm will-change-transform"
     >
       {/* Premium Shimmer Skeleton */}
       {!isReady && (
