@@ -115,9 +115,9 @@ export function TrendingNow({ onProductClick }: { onProductClick?: () => void })
 
   return (
     <section
-      className="pt-[134px] md:pt-[120px] lg:pt-[136px] pb-[29px] md:pb-20 lg:pb-24 relative overflow-hidden mt-[-100px] z-30 bg-surface desktop-blend-top"
+      className="pt-[134px] md:pt-[120px] lg:pt-[136px] pb-[29px] md:pb-20 lg:pb-24 relative overflow-hidden mt-[-100px] z-30 bg-transparent"
     >
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 desktop-blend-top">
         <img 
           src="/homepage/second_section.webp" 
           alt="" 
