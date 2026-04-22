@@ -15,7 +15,15 @@ const staggerContainer = {
 
 export function CuratorStory() {
   return (
-    <section className="py-[47px] md:py-[82px] lg:py-[92px] relative overflow-hidden bg-cover bg-center bg-no-repeat bg-[url('/homepage/first_section.webp')]">
+    <section className="py-[47px] md:py-[82px] lg:py-[92px] relative overflow-hidden bg-surface">
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/homepage/first_section.webp" 
+          alt="" 
+          className="w-full h-full object-cover" 
+          loading="lazy" 
+        />
+      </div>
       
       {/* Invisible SVG definition for the Vintage Frame shape */}
       <svg width="0" height="0" className="absolute pointer-events-none">
@@ -114,12 +122,20 @@ export function SocialSpotlight() {
 
   return (
     <section 
-      className="pt-[134px] md:pt-[120px] lg:pt-[136px] pb-8 md:pb-8 lg:pb-8 relative overflow-hidden bg-cover bg-center bg-no-repeat bg-[url('/homepage/second_section.webp')] mt-[-100px] z-50"
+      className="pt-[134px] md:pt-[120px] lg:pt-[136px] pb-8 md:pb-8 lg:pb-8 relative overflow-hidden mt-[-100px] z-50 bg-surface"
       style={{ 
         maskImage: 'linear-gradient(to bottom, transparent, black 150px)',
         WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 150px)'
       }}
     >
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/homepage/second_section.webp" 
+          alt="" 
+          className="w-full h-full object-cover" 
+          loading="lazy" 
+        />
+      </div>
 
       <div className="max-w-screen-2xl mx-auto relative z-10">
         <motion.div 
@@ -173,13 +189,15 @@ export function SocialSpotlight() {
 function SpotlightVideo({ post, index }: { post: string, index: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isInView, setIsInView] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsInView(entry.isIntersecting);
+        if (entry.isIntersecting) setHasLoaded(true);
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: '200px' } // Start loading slightly before it comes into view
     );
 
     if (videoRef.current) {
@@ -194,14 +212,14 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
   }, []);
 
   useEffect(() => {
-    if (videoRef.current) {
+    if (videoRef.current && hasLoaded) {
       if (isInView) {
         videoRef.current.play().catch(() => {});
       } else {
         videoRef.current.pause();
       }
     }
-  }, [isInView]);
+  }, [isInView, hasLoaded]);
 
   return (
     <motion.div 
@@ -210,18 +228,24 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className="relative group flex-shrink-0 w-[42vw] md:w-[32vw] lg:w-[calc(20%-20px)] snap-start aspect-[9/16] overflow-hidden border border-on-surface/10 hover:shadow-xl shadow-sm cursor-pointer bg-white rounded-sm"
     >
-      <motion.video
-        ref={videoRef}
-        whileHover={{ scale: 1.05 }}
-        transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
-        className="w-full h-full object-cover"
-        style={{ transform: 'translateZ(0)' }}
-        src={post}
-        muted
-        loop
-        playsInline
-        preload="metadata"
-      />
+      {hasLoaded ? (
+        <motion.video
+          ref={videoRef}
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
+          className="w-full h-full object-cover"
+          style={{ transform: 'translateZ(0)' }}
+          src={post}
+          muted
+          loop
+          playsInline
+          preload="none"
+        />
+      ) : (
+        <div className="w-full h-full bg-surface-container flex items-center justify-center">
+          <Play className="w-6 h-6 text-on-surface/20" />
+        </div>
+      )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 mix-blend-multiply"></div>
       
       <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-white/10 backdrop-blur-md px-2 md:px-3 py-1 md:py-1.5 flex items-center justify-center border border-white/20 shadow-sm z-30">
@@ -258,12 +282,20 @@ export function Testimonials() {
 
   return (
     <section 
-      className="pt-[134px] md:pt-[120px] lg:pt-[136px] pb-8 md:pb-8 lg:py-8 relative overflow-hidden bg-cover bg-center bg-no-repeat bg-[url('/homepage/third_section.webp')] mt-[-100px] z-[60]"
+      className="pt-[134px] md:pt-[120px] lg:pt-[136px] pb-8 md:pb-8 lg:py-8 relative overflow-hidden mt-[-100px] z-[60] bg-surface"
       style={{ 
         maskImage: 'linear-gradient(to bottom, transparent, black 150px)',
         WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 150px)'
       }}
     >
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/homepage/third_section.webp" 
+          alt="" 
+          className="w-full h-full object-cover" 
+          loading="lazy" 
+        />
+      </div>
 
       <div className="relative z-10">
         <motion.div 
@@ -373,12 +405,20 @@ export function Testimonials() {
 export function Newsletter() {
   return (
     <section 
-      className="pt-[144px] md:pt-[160px] lg:pt-[176px] pb-[37px] md:pb-[72px] relative overflow-hidden bg-cover bg-center bg-no-repeat bg-[url('/homepage/first_section.webp')] mt-[-100px] z-[70]"
+      className="pt-[144px] md:pt-[160px] lg:pt-[176px] pb-[37px] md:pb-[72px] relative overflow-hidden mt-[-100px] z-[70] bg-surface"
       style={{ 
         maskImage: 'linear-gradient(to bottom, transparent, black 150px)',
         WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 150px)'
       }}
     >
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/homepage/first_section.webp" 
+          alt="" 
+          className="w-full h-full object-cover" 
+          loading="lazy" 
+        />
+      </div>
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Elegant Invitation Box */}

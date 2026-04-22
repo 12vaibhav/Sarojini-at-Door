@@ -115,12 +115,20 @@ export function TrendingNow({ onProductClick }: { onProductClick?: () => void })
 
   return (
     <section
-      className="pt-[134px] md:pt-[120px] lg:pt-[136px] pb-[29px] md:pb-20 lg:pb-24 relative overflow-hidden bg-cover bg-center bg-no-repeat bg-[url('/homepage/second_section.webp')] mt-[-100px] z-30"
+      className="pt-[134px] md:pt-[120px] lg:pt-[136px] pb-[29px] md:pb-20 lg:pb-24 relative overflow-hidden mt-[-100px] z-30 bg-surface"
       style={{
         maskImage: 'linear-gradient(to bottom, transparent, black 150px)',
         WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 150px)'
       }}
     >
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/homepage/second_section.webp" 
+          alt="" 
+          className="w-full h-full object-cover" 
+          loading="lazy" 
+        />
+      </div>
       <div className="max-w-screen-2xl mx-auto relative z-10">
         <motion.div
           initial="hidden"
@@ -230,12 +238,20 @@ export function MasterpieceCollection({ onProductClick }: { onProductClick?: () 
 
   return (
     <section
-      className="pt-[54px] md:pt-[70px] lg:pt-[86px] pb-4 md:pb-6 lg:pb-7 relative overflow-hidden bg-cover bg-center bg-no-repeat bg-[url('/homepage/third_section.webp')] mt-[-100px] z-40"
+      className="pt-[54px] md:pt-[70px] lg:pt-[86px] pb-4 md:pb-6 lg:pb-7 relative overflow-hidden mt-[-100px] z-40 bg-surface"
       style={{
         maskImage: 'linear-gradient(to bottom, transparent, black 150px)',
         WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 150px)'
       }}
     >
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/homepage/third_section.webp" 
+          alt="" 
+          className="w-full h-full object-cover" 
+          loading="lazy" 
+        />
+      </div>
       <div className="max-w-screen-2xl mx-auto relative z-10">
         <motion.div
           initial="hidden"

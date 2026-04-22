@@ -99,7 +99,15 @@ export function Categories() {
   ];
 
   return (
-    <section className="py-8 md:py-8 lg:py-8 w-full mx-auto relative overflow-hidden bg-cover bg-center bg-no-repeat bg-[url('/homepage/first_section.webp')]">
+    <section className="py-8 md:py-8 lg:py-8 w-full mx-auto relative overflow-hidden bg-surface">
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/homepage/first_section.webp" 
+          alt="" 
+          className="w-full h-full object-cover opacity-100" 
+          loading="lazy" 
+        />
+      </div>
 
       <motion.div
         initial="hidden"

@@ -6,12 +6,25 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import { TrustBadges, Categories } from "./components/Sections";
-import { TrendingNow, MasterpieceCollection, PromoBanner } from "./components/ProductSections";
-import { CuratorStory, SocialSpotlight, Testimonials, Newsletter, Footer } from "./components/FooterSections";
-import ProductPage from "./components/ProductPage";
 import { FaWhatsapp } from "react-icons/fa";
 import { motion, AnimatePresence } from "motion/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
+
+// Lazy load heavy components
+const TrendingNow = lazy(() => import("./components/ProductSections").then(module => ({ default: module.TrendingNow })));
+const MasterpieceCollection = lazy(() => import("./components/ProductSections").then(module => ({ default: module.MasterpieceCollection })));
+const PromoBanner = lazy(() => import("./components/ProductSections").then(module => ({ default: module.PromoBanner })));
+
+const CuratorStory = lazy(() => import("./components/FooterSections").then(module => ({ default: module.CuratorStory })));
+const SocialSpotlight = lazy(() => import("./components/FooterSections").then(module => ({ default: module.SocialSpotlight })));
+const Testimonials = lazy(() => import("./components/FooterSections").then(module => ({ default: module.Testimonials })));
+const Newsletter = lazy(() => import("./components/FooterSections").then(module => ({ default: module.Newsletter })));
+const Footer = lazy(() => import("./components/FooterSections").then(module => ({ default: module.Footer })));
+
+const ProductPage = lazy(() => import("./components/ProductPage"));
+
+// Loading fallback
+const SectionLoader = () => <div className="h-40 w-full flex items-center justify-center opacity-20">Loading...</div>;
 
 export default function App() {
   const [view, setView] = useState<'home' | 'product'>('home');
@@ -39,13 +52,15 @@ export default function App() {
             <Hero />
             <TrustBadges />
             <Categories />
-            <TrendingNow onProductClick={() => setView('product')} />
-            <MasterpieceCollection onProductClick={() => setView('product')} />
-            <PromoBanner />
-            <CuratorStory />
-            <SocialSpotlight />
-            <Testimonials />
-            <Newsletter />
+            <Suspense fallback={<SectionLoader />}>
+              <TrendingNow onProductClick={() => setView('product')} />
+              <MasterpieceCollection onProductClick={() => setView('product')} />
+              <PromoBanner />
+              <CuratorStory />
+              <SocialSpotlight />
+              <Testimonials />
+              <Newsletter />
+            </Suspense>
           </motion.main>
         ) : (
           <motion.main
@@ -55,12 +70,16 @@ export default function App() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <ProductPage onBack={() => setView('home')} />
+            <Suspense fallback={<div className="min-h-screen pt-20 text-center">Loading Product...</div>}>
+              <ProductPage onBack={() => setView('home')} />
+            </Suspense>
           </motion.main>
         )}
       </AnimatePresence>
 
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
       
       {/* WhatsApp Floating Button */}
       <motion.a 
