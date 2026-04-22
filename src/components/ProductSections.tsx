@@ -234,13 +234,9 @@ export function MasterpieceCollection({ onProductClick }: { onProductClick?: () 
 
   return (
     <section
-      className="pt-[54px] md:pt-[70px] lg:pt-[86px] pb-4 md:pb-6 lg:pb-7 relative overflow-hidden mt-[-100px] z-40 bg-surface"
-      style={{
-        maskImage: 'linear-gradient(to bottom, transparent, black 150px)',
-        WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 150px)'
-      }}
+      className="pt-[54px] md:pt-[70px] lg:pt-[86px] pb-4 md:pb-6 lg:pb-7 relative overflow-hidden mt-[-100px] z-40 bg-transparent"
     >
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 desktop-blend-top">
         <img 
           src="/homepage/third_section.webp" 
           alt="" 
