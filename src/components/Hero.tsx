@@ -33,33 +33,33 @@ export default function Hero() {
           <motion.div style={{ opacity }} className="w-full flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 lg:gap-12 drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)]">
           
           {/* Left Aligned Organized Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            style={{ y: yTitle }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-start text-left w-full lg:w-auto"
-          >
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 0.8, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-white font-body text-[8px] md:text-[10px] font-light uppercase tracking-[0.5em] mb-4 md:mb-6 select-none drop-shadow-md"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              style={{ y: yTitle, willChange: "transform, opacity" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col items-start text-left w-full lg:w-auto"
             >
-              The Digital Bazaar Edition
-            </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 0.8, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+                className="text-white font-body text-[8px] md:text-[10px] font-light uppercase tracking-[0.5em] mb-4 md:mb-6 select-none drop-shadow-md"
+              >
+                The Digital Bazaar Edition
+              </motion.div>
 
-            <h1 className="font-headline text-[13vw] md:text-[11vw] lg:text-[5.5vw] font-normal leading-[1] md:leading-[1.05] text-white flex flex-col items-start drop-shadow-[0_15px_40px_rgba(0,0,0,0.8)]">
-              <span className="block font-light tracking-tight">The Bazaar</span>
-              <span className="flex items-center justify-start gap-2 md:gap-3 w-full">
-                <motion.span 
-                  initial={{ opacity: 0, filter: 'blur(10px)' }}
-                  animate={{ opacity: 1, filter: 'blur(0px)' }}
-                  transition={{ delay: 0.4, duration: 0.8 }}
-                  className="italic text-primary-fixed font-light drop-shadow-2xl pr-1"
-                >
-                  Found,
-                </motion.span>
+              <h1 className="font-headline text-[13vw] md:text-[11vw] lg:text-[5.5vw] font-normal leading-[1] md:leading-[1.05] text-white flex flex-col items-start drop-shadow-[0_15px_40px_rgba(0,0,0,0.8)]">
+                <span className="block font-light tracking-tight">The Bazaar</span>
+                <span className="flex items-center justify-start gap-2 md:gap-3 w-full">
+                  <motion.span 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 0.8 }}
+                    className="italic text-primary-fixed font-light drop-shadow-2xl pr-1"
+                  >
+                    Found,
+                  </motion.span>
                 <span className="not-italic text-white font-light tracking-tight">Its Way</span>
               </span>
               <span className="block font-light tracking-tight">To Your Door</span>
@@ -70,7 +70,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            style={{ y: ySubtitle }}
+            style={{ y: ySubtitle, willChange: "transform, opacity" }}
             transition={{ delay: 0.5, duration: 0.8 }}
             className="flex flex-col items-start lg:items-end text-left lg:text-right gap-6 w-full max-w-[500px] lg:max-w-[400px]"
           >

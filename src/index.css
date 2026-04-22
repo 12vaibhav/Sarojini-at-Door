@@ -140,3 +140,26 @@
   0% { transform: translateY(0) translateX(0); }
   100% { transform: translateY(20px) translateX(20px); }
 }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Hardware Acceleration Hints */
+.optimize-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+/* Containment for layout performance */
+section {
+  contain: paint;
+}

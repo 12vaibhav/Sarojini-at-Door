@@ -116,11 +116,8 @@ export function TrendingNow({ onProductClick }: { onProductClick?: () => void })
   return (
     <section
       className="pt-[134px] md:pt-[120px] lg:pt-[136px] pb-[29px] md:pb-20 lg:pb-24 relative overflow-hidden mt-[-100px] z-30 bg-surface"
-      style={{
-        maskImage: 'linear-gradient(to bottom, transparent, black 150px)',
-        WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 150px)'
-      }}
     >
+      <div className="absolute top-0 left-0 right-0 h-[150px] bg-gradient-to-b from-surface to-transparent z-10 pointer-events-none"></div>
       <div className="absolute inset-0 z-0">
         <img 
           src="/homepage/second_section.webp" 
@@ -172,6 +169,7 @@ export function TrendingNow({ onProductClick }: { onProductClick?: () => void })
                 key={i}
                 variants={fadeUpVariant}
                 whileHover={{ y: -10 }}
+                style={{ willChange: "transform, opacity" }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 className="group relative flex-shrink-0 w-[44vw] sm:w-[45vw] lg:w-[calc(25%-24px)] snap-start aspect-[3/4] overflow-hidden cursor-pointer bg-white shadow-sm hover:shadow-xl transition-shadow duration-700 rounded-sm"
                 onClick={onProductClick}
@@ -239,11 +237,8 @@ export function MasterpieceCollection({ onProductClick }: { onProductClick?: () 
   return (
     <section
       className="pt-[54px] md:pt-[70px] lg:pt-[86px] pb-4 md:pb-6 lg:pb-7 relative overflow-hidden mt-[-100px] z-40 bg-surface"
-      style={{
-        maskImage: 'linear-gradient(to bottom, transparent, black 150px)',
-        WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 150px)'
-      }}
     >
+      <div className="absolute top-0 left-0 right-0 h-[150px] bg-gradient-to-b from-surface to-transparent z-10 pointer-events-none"></div>
       <div className="absolute inset-0 z-0">
         <img 
           src="/homepage/third_section.webp" 
@@ -295,6 +290,7 @@ export function MasterpieceCollection({ onProductClick }: { onProductClick?: () 
                 key={i}
                 variants={fadeUpVariant}
                 onClick={onProductClick}
+                style={{ willChange: "transform, opacity" }}
                 className="group relative flex-shrink-0 w-[70vw] sm:w-[40vw] lg:w-[calc(20%-15px)] snap-start cursor-pointer"
               >
                 {/* Product Image Container */}

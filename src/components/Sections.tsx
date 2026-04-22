@@ -29,8 +29,8 @@ export function TrustBadges() {
       className="relative bg-surface overflow-hidden border-y border-on-surface/5 py-[27px] md:py-[27px] z-40 lg:-mt-10"
     >
       {/* Brand Color Aura / Mesh Gradient (Theme Consistent) */}
-      <div className="absolute top-0 left-0 w-full md:w-3/4 max-w-[800px] aspect-square bg-primary-fixed/60 rounded-full blur-[100px] md:blur-[140px] opacity-90 mix-blend-multiply pointer-events-none transform -translate-x-1/4 -translate-y-1/4"></div>
-      <div className="absolute bottom-0 right-0 w-full md:w-3/4 max-w-[800px] aspect-square bg-secondary-fixed/70 rounded-full blur-[100px] md:blur-[140px] opacity-90 mix-blend-multiply pointer-events-none transform translate-x-1/4 translate-y-1/4"></div>
+      <div className="absolute top-0 left-0 w-full md:w-3/4 max-w-[800px] aspect-square bg-primary-fixed/60 rounded-full blur-[80px] md:blur-[100px] opacity-90 mix-blend-multiply pointer-events-none transform -translate-x-1/4 -translate-y-1/4"></div>
+      <div className="absolute bottom-0 right-0 w-full md:w-3/4 max-w-[800px] aspect-square bg-secondary-fixed/70 rounded-full blur-[80px] md:blur-[100px] opacity-90 mix-blend-multiply pointer-events-none transform translate-x-1/4 translate-y-1/4"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <motion.div
@@ -44,20 +44,14 @@ export function TrustBadges() {
             <motion.div
               key={index}
               variants={fadeUpVariant}
+              style={{ willChange: "transform, opacity" }}
               className={`flex flex-col items-center justify-center text-center group cursor-default px-2 md:px-6 ${index % 2 !== 1 ? 'border-r border-on-surface/10' : ''} ${index === 2 ? 'lg:border-r lg:border-on-surface/10' : ''} lg:flex-col lg:text-center`}
             >
-              <motion.div
-                animate={{ y: [0, -4, 0] }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: index * 0.5
-                }}
+              <div
                 className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-on-surface/10 bg-surface group-hover:bg-on-surface flex items-center justify-center mb-1 lg:mb-1.5 shadow-sm group-hover:shadow-md lg:group-hover:scale-110 transition-all duration-500 ease-out flex-shrink-0"
               >
                 <badge.icon className={`w-6 h-6 md:w-7 md:h-7 ${badge.color} group-hover:text-surface transition-colors duration-500 stroke-[1.2]`} />
-              </motion.div>
+              </div>
               <div className="flex flex-col">
                 <h3 className="font-headline text-xs md:text-sm lg:text-base font-light text-on-surface mb-0 md:mb-0.5 lg:mb-0.5 tracking-wide leading-snug">{badge.title}</h3>
                 <p className="font-body text-[6px] md:text-[7px] uppercase tracking-[0.2em] font-medium text-on-surface/50 leading-relaxed">
