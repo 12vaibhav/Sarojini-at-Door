@@ -465,7 +465,7 @@ export function Footer() {
             <div>
               <div className="text-xl md:text-2xl font-bold text-white font-headline tracking-widest mb-4 md:mb-6 lg:mb-4 flex items-center gap-4 drop-shadow-lg">
                 <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/40 backdrop-blur-xl border border-white/20 flex items-center justify-center shadow-2xl transition-all duration-500">
-                  <img src="/Logo_T.svg" className="w-8 h-8 md:w-9 md:h-9 object-contain" alt="Logo" />
+                  <img src="/Logo_T.svg" className="w-9 h-9 md:w-11 md:h-11 object-contain" alt="Logo" />
                 </div>
                 <span>Sarojini at Door</span>
               </div>
