@@ -183,7 +183,7 @@ export function SocialSpotlight() {
           </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
