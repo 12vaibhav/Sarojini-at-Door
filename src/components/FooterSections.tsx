@@ -1,4 +1,4 @@
-import { BadgeCheck, Play, Star, MessageCircle, Instagram, Facebook, Twitter, Youtube, CreditCard, Mail, MapPin, ArrowRight, Flower2, ChevronLeft, ChevronRight } from "lucide-react";
+import { BadgeCheck, Play, Star, MessageCircle, Instagram, Facebook, Twitter, Youtube, CreditCard, Mail, MapPin, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { motion } from "motion/react";
 import { useRef, useState, useEffect } from "react";
@@ -464,7 +464,7 @@ export function Footer() {
           <motion.div variants={fadeUpVariant} className="col-span-2 lg:col-span-4 flex flex-col justify-between h-full space-y-8">
             <div>
               <div className="text-xl md:text-2xl font-bold text-white font-headline tracking-widest mb-4 md:mb-6 lg:mb-4 flex items-center gap-3 drop-shadow-lg">
-                <Flower2 className="w-7 h-7 md:w-8 md:h-8 fill-white" />
+                <img src="/favicon.png" alt="Sarojini Logo" className="w-8 h-8 md:w-10 md:h-10 object-contain" />
                 <span>Sarojini at Door</span>
               </div>
               <p className="text-white/60 font-body font-light leading-relaxed text-xs md:text-sm max-w-sm">
