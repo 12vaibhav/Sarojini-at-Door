@@ -112,12 +112,12 @@ export function SocialSpotlight() {
   };
 
   const posts = [
-    "/Product%20Images/Videos/Video-1.mp4#t=10",
-    "/Product%20Images/Videos/Video-2.mp4#t=10",
-    "/Product%20Images/Videos/Video-3.mp4#t=6",
-    "/Product%20Images/Videos/Video-4.mp4#t=6",
-    "/Product%20Images/Videos/Video-5.mp4#t=6",
-    "/Product%20Images/Videos/Video-6.mp4#t=6"
+    "/Product%20Images/Videos/Video-1.mp4",
+    "/Product%20Images/Videos/Video-2.mp4",
+    "/Product%20Images/Videos/Video-3.mp4",
+    "/Product%20Images/Videos/Video-4.mp4",
+    "/Product%20Images/Videos/Video-5.mp4",
+    "/Product%20Images/Videos/Video-6.mp4"
   ];
 
   return (
@@ -186,7 +186,7 @@ export function SocialSpotlight() {
   );
 }
 
-const SpotlightVideo = ({ post, index }: { post: string, index: number }) => {
+function SpotlightVideo({ post, index }: { post: string, index: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
