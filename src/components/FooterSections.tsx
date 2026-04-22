@@ -121,19 +121,20 @@ export function SocialSpotlight() {
   ];
 
   return (
-    <section 
-      className="pt-[134px] md:pt-[120px] lg:pt-[136px] pb-8 md:pb-8 lg:pb-8 relative overflow-hidden mt-[-100px] z-50 bg-surface"
-      style={{ 
-        maskImage: 'linear-gradient(to bottom, transparent, black 150px)',
-        WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 150px)'
-      }}
+    <motion.section 
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 1 }}
+      className="pt-[134px] md:pt-[120px] lg:pt-[136px] pb-8 md:pb-8 lg:pb-8 relative overflow-hidden mt-[-100px] z-50 bg-transparent"
     >
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 desktop-blend-top">
         <img 
           src="/homepage/second_section.webp" 
           alt="" 
-          className="w-full h-full object-cover" 
-          loading="lazy" 
+          className="w-full h-full object-cover transition-opacity duration-1000" 
+          onLoad={(e) => (e.currentTarget.style.opacity = '1')}
+          style={{ opacity: 0 }}
         />
       </div>
 
@@ -142,10 +143,10 @@ export function SocialSpotlight() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          variants={fadeUpVariant}
-          className="flex flex-col items-center mb-6 md:mb-8 lg:mb-8 text-center px-6"
+          variants={smoothFadeUp}
+          className="flex flex-col items-center mb-6 md:mb-8 lg:mb-8 text-center px-6 will-change-transform"
         >
-          <span className="font-body text-[10px] md:text-sm tracking-[0.3em] font-medium uppercase text-secondary opacity-60 mb-4 md:mb-6 lg:mb-4 leading-relaxed">Cinematic Spotlight</span>
+          <span className="font-body text-[10px] md:text-sm tracking-[0.3em] font-medium uppercase text-secondary mb-4 md:mb-6 lg:mb-4 leading-relaxed">Cinematic Spotlight</span>
           <h2 className="font-headline text-3xl md:text-5xl lg:text-6xl font-light tracking-tight text-inverse-surface mb-4 md:mb-6 lg:mb-4 leading-snug">#Wear<i className="text-secondary">TheBazaar</i></h2>
           <p className="font-body text-xs md:text-base text-on-surface/70 leading-relaxed max-w-sm md:max-w-md font-light">Discover professional-grade styling from our collective. High-street soul meets editorial standards.</p>
         </motion.div>
