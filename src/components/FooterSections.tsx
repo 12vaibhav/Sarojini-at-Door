@@ -188,6 +188,7 @@ export function SocialSpotlight() {
 
 function SpotlightVideo({ post, index }: { post: string, index: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -197,22 +198,22 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
         setIsInView(entry.isIntersecting);
         if (entry.isIntersecting) setHasLoaded(true);
       },
-      { threshold: 0.1, rootMargin: '200px' } // Start loading slightly before it comes into view
+      { threshold: 0.1, rootMargin: '200px' }
     );
 
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
     }
 
     return () => {
-      if (videoRef.current) {
-        observer.unobserve(videoRef.current);
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
       }
     };
   }, []);
 
   useEffect(() => {
-    if (videoRef.current && hasLoaded) {
+    if (videoRef.current) {
       if (isInView) {
         videoRef.current.play().catch(() => {});
       } else {
@@ -223,6 +224,7 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
 
   return (
     <motion.div 
+      ref={containerRef}
       variants={fadeUpVariant}
       whileHover={{ y: -10 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
