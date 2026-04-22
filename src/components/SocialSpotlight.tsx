@@ -85,7 +85,7 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
     >
       {/* Premium Shimmer Skeleton */}
       {!isReady && (
-        <div className="absolute inset-0 bg-gradient-to-r from-surface-container via-surface-container-high to-surface-container animate-shimmer z-10" 
+        <div className="absolute inset-0 bg-surface-container animate-shimmer z-10" 
              style={{ backgroundSize: '200% 100%' }} />
       )}
 
@@ -107,21 +107,21 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
         src={hasStartedLoading ? `${post}#t=0.001` : undefined}
       />
       
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 mix-blend-multiply pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 pointer-events-none"></div>
       
-      <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-white/10 backdrop-blur-md px-2 md:px-3 py-1 md:py-1.5 flex items-center justify-center border border-white/20 shadow-sm z-30 pointer-events-none">
+      <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-black/40 px-2 md:px-3 py-1 md:py-1.5 flex items-center justify-center border border-white/10 shadow-sm z-30 pointer-events-none">
         <BadgeCheck className="w-2.5 h-2.5 md:w-3 md:h-3 text-white mr-1 md:mr-1.5" />
         <span className="font-body text-[6px] md:text-[8px] tracking-[0.3em] font-light uppercase text-white">Verified</span>
       </div>
       
       <div className={`absolute inset-0 flex flex-col justify-end items-center p-3 md:p-6 transition-opacity duration-500 z-40 ${isPlaying ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
-        <div className="border border-white/40 bg-white/10 backdrop-blur-md text-white py-2 md:py-4 px-3 md:px-6 text-[8px] md:text-[10px] font-body font-medium uppercase tracking-[0.2em] shadow-lg text-center w-full rounded-sm pointer-events-none">
+        <div className="border border-white/20 bg-black/60 text-white py-2 md:py-4 px-3 md:px-6 text-[8px] md:text-[10px] font-body font-medium uppercase tracking-[0.2em] shadow-lg text-center w-full rounded-sm pointer-events-none">
           {isPlaying ? 'Pause Video' : 'Shop this Look'}
         </div>
       </div>
       
       <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 z-50 pointer-events-none ${isPlaying ? 'opacity-0 scale-50' : 'opacity-100 scale-100'}`}>
-        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center shadow-2xl">
+        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-black/40 border border-white/20 flex items-center justify-center shadow-2xl">
           <Play className="w-6 h-6 md:w-8 md:h-8 text-white fill-white ml-0.5" />
         </div>
       </div>
@@ -156,7 +156,9 @@ export function SocialSpotlight() {
       transition={{ duration: 1 }}
       className="pt-[134px] md:pt-[120px] lg:pt-[136px] pb-8 md:pb-8 lg:pb-8 relative overflow-hidden mt-[-100px] z-50 bg-transparent"
     >
-      <div className="absolute inset-0 z-0 desktop-blend-top">
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Using a standard gradient instead of mask-image for better mobile perf */}
+        <div className="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-transparent z-10 h-32 md:h-40" />
         <img 
           src="/homepage/second_section.webp" 
           alt="" 
