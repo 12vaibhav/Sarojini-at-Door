@@ -82,9 +82,13 @@ export default function Navbar({ onHomeClick, view = 'home' }: { onHomeClick?: (
                 hover: { rotate: 360, scale: 1.1 }
               }}
               transition={{ duration: 1.2, ease: "anticipate" }}
-              className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-black/40 backdrop-blur-xl border border-white/20 flex items-center justify-center shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] transition-all duration-500"
+              className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-black/60 backdrop-blur-2xl border border-white/30 flex items-center justify-center shadow-[0_0_20px_rgba(0,0,0,0.4)] transition-all duration-500"
             >
-              <img src="/Logo_T.svg" className="w-9 h-9 md:w-12 md:h-12 object-contain drop-shadow-md" alt="Logo" />
+              <img 
+                src="/Logo_T.svg" 
+                className="w-7 h-7 md:w-10 md:h-10 object-contain brightness-[1.5] contrast-[1.2] drop-shadow-[0_0_5px_rgba(255,255,255,0.4)]" 
+                alt="Logo" 
+              />
             </motion.div>
             <span className="transition-all duration-500 hidden sm:block">
               Sarojini at Door

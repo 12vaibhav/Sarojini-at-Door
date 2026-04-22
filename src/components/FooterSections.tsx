@@ -464,8 +464,12 @@ export function Footer() {
           <motion.div variants={fadeUpVariant} className="col-span-2 lg:col-span-4 flex flex-col justify-between h-full space-y-8">
             <div>
               <div className="text-xl md:text-2xl font-bold text-white font-headline tracking-widest mb-4 md:mb-6 lg:mb-4 flex items-center gap-4 drop-shadow-lg">
-                <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/40 backdrop-blur-xl border border-white/20 flex items-center justify-center shadow-2xl transition-all duration-500">
-                  <img src="/Logo_T.svg" className="w-9 h-9 md:w-11 md:h-11 object-contain" alt="Logo" />
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/60 backdrop-blur-2xl border border-white/30 flex items-center justify-center shadow-2xl transition-all duration-500">
+                  <img 
+                    src="/Logo_T.svg" 
+                    className="w-7 h-7 md:w-9 md:h-9 object-contain brightness-[1.5] contrast-[1.2] drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]" 
+                    alt="Logo" 
+                  />
                 </div>
                 <span>Sarojini at Door</span>
               </div>
