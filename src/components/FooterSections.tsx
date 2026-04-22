@@ -191,6 +191,7 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [canPlay, setCanPlay] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -200,7 +201,7 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
       },
       { 
         threshold: 0.01, 
-        rootMargin: '1200px' // Start loading very early (almost as soon as the user starts scrolling)
+        rootMargin: '1200px'
       }
     );
 
@@ -216,19 +217,17 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
   }, []);
 
   useEffect(() => {
-    if (videoRef.current && hasLoaded) {
+    if (videoRef.current && canPlay) {
       if (isInView) {
         const playPromise = videoRef.current.play();
         if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            // Auto-play was prevented
-          });
+          playPromise.catch(() => {});
         }
       } else {
         videoRef.current.pause();
       }
     }
-  }, [isInView, hasLoaded]);
+  }, [isInView, canPlay]);
 
   return (
     <motion.div 
@@ -240,18 +239,20 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
     >
       <video
         ref={videoRef}
-        className={`w-full h-full object-cover transition-opacity duration-1000 ${hasLoaded ? 'opacity-100' : 'opacity-0'}`}
+        className={`w-full h-full object-cover transition-opacity duration-700 ${canPlay ? 'opacity-100' : 'opacity-0'}`}
         style={{ transform: 'translateZ(0)' }}
-        src={hasLoaded ? post : undefined}
+        onCanPlay={() => setCanPlay(true)}
         muted
         loop
         playsInline
         preload="auto"
-      />
+      >
+        {hasLoaded && <source src={post} type="video/mp4" />}
+      </video>
       
-      {!hasLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-8 h-8 border-2 border-on-surface/10 border-t-on-surface/30 rounded-full animate-spin" />
+      {!canPlay && (
+        <div className="absolute inset-0 flex items-center justify-center bg-surface-container">
+          <div className="w-6 h-6 border-2 border-on-surface/10 border-t-on-surface/40 rounded-full animate-spin" />
         </div>
       )}
 
