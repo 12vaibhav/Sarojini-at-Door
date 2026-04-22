@@ -198,7 +198,10 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
         setIsInView(entry.isIntersecting);
         if (entry.isIntersecting) setHasLoaded(true);
       },
-      { threshold: 0.1, rootMargin: '600px' }
+      { 
+        threshold: 0.01, 
+        rootMargin: '1200px' // Start loading very early (almost as soon as the user starts scrolling)
+      }
     );
 
     if (containerRef.current) {
@@ -213,9 +216,14 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
   }, []);
 
   useEffect(() => {
-    if (videoRef.current) {
+    if (videoRef.current && hasLoaded) {
       if (isInView) {
-        videoRef.current.play().catch(() => {});
+        const playPromise = videoRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Auto-play was prevented
+          });
+        }
       } else {
         videoRef.current.pause();
       }
@@ -228,26 +236,25 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
       variants={fadeUpVariant}
       whileHover={{ y: -10 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="relative group flex-shrink-0 w-[42vw] md:w-[32vw] lg:w-[calc(20%-20px)] snap-start aspect-[9/16] overflow-hidden border border-on-surface/10 hover:shadow-xl shadow-sm cursor-pointer bg-white rounded-sm"
+      className="relative group flex-shrink-0 w-[42vw] md:w-[32vw] lg:w-[calc(20%-20px)] snap-start aspect-[9/16] overflow-hidden border border-on-surface/10 hover:shadow-xl shadow-sm cursor-pointer bg-surface-container rounded-sm"
     >
-      {hasLoaded ? (
-        <motion.video
-          ref={videoRef}
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
-          className="w-full h-full object-cover"
-          style={{ transform: 'translateZ(0)' }}
-          src={post}
-          muted
-          loop
-          playsInline
-          preload="auto"
-        />
-      ) : (
-        <div className="w-full h-full bg-surface-container flex items-center justify-center">
-          <Play className="w-6 h-6 text-on-surface/20" />
+      <video
+        ref={videoRef}
+        className={`w-full h-full object-cover transition-opacity duration-1000 ${hasLoaded ? 'opacity-100' : 'opacity-0'}`}
+        style={{ transform: 'translateZ(0)' }}
+        src={hasLoaded ? post : undefined}
+        muted
+        loop
+        playsInline
+        preload="auto"
+      />
+      
+      {!hasLoaded && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-8 h-8 border-2 border-on-surface/10 border-t-on-surface/30 rounded-full animate-spin" />
         </div>
       )}
+
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 mix-blend-multiply"></div>
       
       <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-white/10 backdrop-blur-md px-2 md:px-3 py-1 md:py-1.5 flex items-center justify-center border border-white/20 shadow-sm z-30">
