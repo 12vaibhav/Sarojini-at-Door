@@ -23,8 +23,19 @@ const Footer = lazy(() => import("./components/FooterSections").then(module => (
 
 const ProductPage = lazy(() => import("./components/ProductPage"));
 
-// Loading fallback
-const SectionLoader = () => <div className="h-40 w-full flex items-center justify-center opacity-20">Loading...</div>;
+// Premium Skeleton Loaders for specialized sections
+const SectionSkeleton = () => (
+  <div className="w-full py-20 md:py-24 animate-pulse px-6 md:px-12 max-w-7xl mx-auto">
+    <div className="h-4 w-32 bg-on-surface/5 mb-6" />
+    <div className="h-12 w-full md:w-2/3 bg-on-surface/5 mb-8" />
+    <div className="grid grid-cols-2 lg:grid-cols-5 gap-6 h-[400px]">
+      {[...Array(5)].map((_, i) => (
+        <div key={i} className="bg-on-surface/5 rounded-sm h-full w-full hidden md:block" />
+      ))}
+      <div className="bg-on-surface/5 rounded-sm h-full w-full col-span-2 md:hidden" />
+    </div>
+  </div>
+);
 
 export default function App() {
   const [view, setView] = useState<'home' | 'product'>('home');
@@ -52,13 +63,32 @@ export default function App() {
             <Hero />
             <TrustBadges />
             <Categories />
-            <Suspense fallback={<SectionLoader />}>
+            
+            <Suspense fallback={<SectionSkeleton />}>
               <TrendingNow onProductClick={() => setView('product')} />
+            </Suspense>
+            
+            <Suspense fallback={<SectionSkeleton />}>
               <MasterpieceCollection onProductClick={() => setView('product')} />
+            </Suspense>
+            
+            <Suspense fallback={<SectionSkeleton />}>
               <PromoBanner />
+            </Suspense>
+            
+            <Suspense fallback={<SectionSkeleton />}>
               <CuratorStory />
+            </Suspense>
+            
+            <Suspense fallback={<SectionSkeleton />}>
               <SocialSpotlight />
+            </Suspense>
+            
+            <Suspense fallback={<SectionSkeleton />}>
               <Testimonials />
+            </Suspense>
+            
+            <Suspense fallback={<SectionSkeleton />}>
               <Newsletter />
             </Suspense>
           </motion.main>
@@ -70,14 +100,14 @@ export default function App() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <Suspense fallback={<div className="min-h-screen pt-20 text-center">Loading Product...</div>}>
+            <Suspense fallback={<SectionSkeleton />}>
               <ProductPage onBack={() => setView('home')} />
             </Suspense>
           </motion.main>
         )}
       </AnimatePresence>
 
-      <Suspense fallback={null}>
+      <Suspense fallback={<div className="h-20 bg-black" />}>
         <Footer />
       </Suspense>
       

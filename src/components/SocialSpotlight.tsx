@@ -33,7 +33,7 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
       },
       { 
         threshold: 0.01, 
-        rootMargin: '800px'
+        rootMargin: '1500px'
       }
     );
 
