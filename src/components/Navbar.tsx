@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Search, Heart, ShoppingBag, Menu, X } from "lucide-react";
+import { Search, Heart, ShoppingBag, Flower2, Menu, X } from "lucide-react";
 import AnnouncementBar from "./AnnouncementBar";
 
 const NavLink = ({ href, children, isActive = false, onClick }: { href: string; children: React.ReactNode; isActive?: boolean; onClick?: (e: React.MouseEvent) => void }) => {
@@ -79,11 +79,11 @@ export default function Navbar({ onHomeClick, view = 'home' }: { onHomeClick?: (
           >
             <motion.div
               variants={{
-                hover: { rotate: 360, scale: 1.1 }
+                hover: { rotate: 180, scale: 1.1 }
               }}
-              transition={{ duration: 1.2, ease: "anticipate" }}
+              transition={{ duration: 0.8, ease: "anticipate" }}
             >
-              <img src="/favicon.png" alt="Sarojini Logo" className="w-8 h-8 md:w-10 md:h-10 object-contain drop-shadow-md" />
+              <img src="/favicon.svg" alt="Logo" className="w-7 h-7 md:w-9 md:h-9 object-contain invert brightness-0 group-hover:filter-none transition-all duration-500" />
             </motion.div>
             <span className="transition-all duration-500 hidden sm:block">
               Sarojini at Door
@@ -150,7 +150,7 @@ export default function Navbar({ onHomeClick, view = 'home' }: { onHomeClick?: (
           >
             <div className="flex justify-between items-center mb-16">
               <div className="text-xl font-bold text-white flex items-center gap-3 font-headline">
-                <img src="/favicon.png" alt="Sarojini Logo" className="w-8 h-8 object-contain" />
+                <img src="/favicon.svg" alt="Logo" className="w-7 h-7 object-contain invert brightness-0" />
                 <span>Sarojini</span>
               </div>
               <motion.button
