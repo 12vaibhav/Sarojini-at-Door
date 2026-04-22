@@ -189,19 +189,18 @@ export function SocialSpotlight() {
 function SpotlightVideo({ post, index }: { post: string, index: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isInView, setIsInView] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const [hasStartedLoading, setHasStartedLoading] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsInView(entry.isIntersecting);
         if (entry.isIntersecting) setHasStartedLoading(true);
       },
       { 
         threshold: 0.01, 
-        rootMargin: '400px' // Balanced margin: loads just before it's needed
+        rootMargin: '800px'
       }
     );
 
@@ -216,19 +215,22 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
     };
   }, []);
 
-  useEffect(() => {
-    if (videoRef.current && isReady) {
-      if (isInView) {
-        videoRef.current.play().catch(() => {});
-      } else {
-        videoRef.current.pause();
-      }
+  const handleTogglePlay = () => {
+    if (!videoRef.current) return;
+    
+    if (isPlaying) {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      videoRef.current.play().catch(() => {});
+      setIsPlaying(true);
     }
-  }, [isInView, isReady]);
+  };
 
   return (
     <motion.div 
       ref={containerRef}
+      onClick={handleTogglePlay}
       variants={fadeUpVariant}
       whileHover={{ y: -10 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -244,29 +246,31 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
         ref={videoRef}
         className={`w-full h-full object-cover transition-opacity duration-1000 ${isReady ? 'opacity-100' : 'opacity-0'}`}
         style={{ transform: 'translateZ(0)' }}
-        onCanPlay={() => setIsReady(true)}
+        onLoadedData={() => setIsReady(true)}
         muted
         loop
         playsInline
         preload="metadata"
-        src={hasStartedLoading ? post : undefined}
+        src={hasStartedLoading ? `${post}#t=0.001` : undefined}
       />
       
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 mix-blend-multiply"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 mix-blend-multiply"></div>
       
       <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-white/10 backdrop-blur-md px-2 md:px-3 py-1 md:py-1.5 flex items-center justify-center border border-white/20 shadow-sm z-30">
         <BadgeCheck className="w-2.5 h-2.5 md:w-3 md:h-3 text-white mr-1 md:mr-1.5" />
         <span className="font-body text-[6px] md:text-[8px] tracking-[0.3em] font-light uppercase text-white">Verified</span>
       </div>
       
-      <div className="absolute inset-0 flex flex-col justify-end items-center p-3 md:p-6 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500 z-40">
+      <div className={`absolute inset-0 flex flex-col justify-end items-center p-3 md:p-6 transition-opacity duration-500 z-40 ${isPlaying ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
         <button className="border border-white/40 bg-white/10 backdrop-blur-md text-white py-2 md:py-4 px-3 md:px-6 text-[8px] md:text-[10px] font-body font-medium uppercase tracking-[0.2em] shadow-lg hover:bg-white hover:text-on-surface transition-colors duration-500 w-full outline-none rounded-sm">
-          Shop this Look
+          {isPlaying ? 'Pause Video' : 'Shop this Look'}
         </button>
       </div>
       
-      <div className="absolute bottom-16 md:bottom-24 lg:bottom-8 left-1/2 -translate-x-1/2 opacity-100 lg:group-hover:opacity-0 transition-opacity duration-500">
-        <Play className="w-6 h-6 md:w-10 md:h-10 text-white stroke-[1] fill-white/20 drop-shadow-md" />
+      <div className={`absolute bottom-16 md:bottom-24 lg:bottom-8 left-1/2 -translate-x-1/2 transition-all duration-500 ${isPlaying ? 'opacity-0 scale-50' : 'opacity-100 scale-100'}`}>
+        <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center shadow-2xl">
+          <Play className="w-5 h-5 md:w-6 md:h-6 text-white fill-white" />
+        </div>
       </div>
     </motion.div>
   );
