@@ -101,7 +101,7 @@ export function Categories() {
   ];
 
   return (
-    <section className="py-8 md:py-8 lg:py-8 w-full mx-auto relative overflow-hidden bg-surface">
+    <section className="py-8 md:py-8 lg:py-8 w-full mx-auto relative overflow-hidden bg-surface desktop-blend-bottom">
       <div className="absolute inset-0 z-0">
         <img 
           src="/homepage/first_section.webp" 
