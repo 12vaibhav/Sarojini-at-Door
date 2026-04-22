@@ -280,9 +280,9 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
         </button>
       </div>
       
-      <div className={`absolute bottom-16 md:bottom-24 lg:bottom-8 left-1/2 -translate-x-1/2 transition-all duration-500 ${isPlaying ? 'opacity-0 scale-50' : 'opacity-100 scale-100'}`}>
-        <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center shadow-2xl">
-          <Play className="w-5 h-5 md:w-6 md:h-6 text-white fill-white" />
+      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 z-50 ${isPlaying ? 'opacity-0 scale-50' : 'opacity-100 scale-100'}`}>
+        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center shadow-2xl hover:bg-white/30 transition-all duration-300">
+          <Play className="w-6 h-6 md:w-8 md:h-8 text-white fill-white ml-0.5" />
         </div>
       </div>
     </motion.div>
