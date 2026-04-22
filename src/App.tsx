@@ -6,14 +6,21 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import { TrustBadges, Categories } from "./components/Sections";
-import { TrendingNow, MasterpieceCollection, PromoBanner } from "./components/ProductSections";
-import { CuratorStory, SocialSpotlight, Testimonials, Newsletter } from "./components/FooterSections";
 import { FaWhatsapp } from "react-icons/fa";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect, lazy, Suspense } from "react";
 
-// Only lazy load the ProductPage and Footer (heavy assets)
+// Lazy load heavy components
+const TrendingNow = lazy(() => import("./components/ProductSections").then(module => ({ default: module.TrendingNow })));
+const MasterpieceCollection = lazy(() => import("./components/ProductSections").then(module => ({ default: module.MasterpieceCollection })));
+const PromoBanner = lazy(() => import("./components/ProductSections").then(module => ({ default: module.PromoBanner })));
+
+const CuratorStory = lazy(() => import("./components/FooterSections").then(module => ({ default: module.CuratorStory })));
+const SocialSpotlight = lazy(() => import("./components/FooterSections").then(module => ({ default: module.SocialSpotlight })));
+const Testimonials = lazy(() => import("./components/FooterSections").then(module => ({ default: module.Testimonials })));
+const Newsletter = lazy(() => import("./components/FooterSections").then(module => ({ default: module.Newsletter })));
 const Footer = lazy(() => import("./components/FooterSections").then(module => ({ default: module.Footer })));
+
 const ProductPage = lazy(() => import("./components/ProductPage"));
 
 // Loading fallback
@@ -37,7 +44,6 @@ export default function App() {
         {view === 'home' ? (
           <motion.main
             key="home"
-            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
@@ -45,13 +51,15 @@ export default function App() {
             <Hero />
             <TrustBadges />
             <Categories />
-            <TrendingNow onProductClick={() => setView('product')} />
-            <MasterpieceCollection onProductClick={() => setView('product')} />
-            <PromoBanner />
-            <CuratorStory />
-            <SocialSpotlight />
-            <Testimonials />
-            <Newsletter />
+            <Suspense fallback={<SectionLoader />}>
+              <TrendingNow onProductClick={() => setView('product')} />
+              <MasterpieceCollection onProductClick={() => setView('product')} />
+              <PromoBanner />
+              <CuratorStory />
+              <SocialSpotlight />
+              <Testimonials />
+              <Newsletter />
+            </Suspense>
           </motion.main>
         ) : (
           <motion.main
