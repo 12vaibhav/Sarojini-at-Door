@@ -79,11 +79,12 @@ export default function Navbar({ onHomeClick, view = 'home' }: { onHomeClick?: (
           >
             <motion.div
               variants={{
-                hover: { rotate: 180, scale: 1.1 }
+                hover: { rotate: 360, scale: 1.1 }
               }}
-              transition={{ duration: 0.8, ease: "anticipate" }}
+              transition={{ duration: 1.2, ease: "anticipate" }}
+              className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 flex items-center justify-center shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] transition-all duration-500"
             >
-              <img src="/favicon.svg" alt="Logo" className="w-7 h-7 md:w-9 md:h-9 object-contain invert brightness-0 group-hover:filter-none transition-all duration-500" />
+              <img src="/Logo_T.svg" className="w-8 h-8 md:w-10 md:h-10 object-contain drop-shadow-md" alt="Logo" />
             </motion.div>
             <span className="transition-all duration-500 hidden sm:block">
               Sarojini at Door
@@ -150,7 +151,7 @@ export default function Navbar({ onHomeClick, view = 'home' }: { onHomeClick?: (
           >
             <div className="flex justify-between items-center mb-16">
               <div className="text-xl font-bold text-white flex items-center gap-3 font-headline">
-                <img src="/favicon.svg" alt="Logo" className="w-7 h-7 object-contain invert brightness-0" />
+                <Flower2 className="w-7 h-7 fill-white" />
                 <span>Sarojini</span>
               </div>
               <motion.button

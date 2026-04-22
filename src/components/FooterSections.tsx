@@ -463,8 +463,10 @@ export function Footer() {
           {/* Brand Column */}
           <motion.div variants={fadeUpVariant} className="col-span-2 lg:col-span-4 flex flex-col justify-between h-full space-y-8">
             <div>
-              <div className="text-xl md:text-2xl font-bold text-white font-headline tracking-widest mb-4 md:mb-6 lg:mb-4 flex items-center gap-3 drop-shadow-lg">
-                <img src="/favicon.svg" alt="Logo" className="w-7 h-7 md:w-8 md:h-8 object-contain invert brightness-0" />
+              <div className="text-xl md:text-2xl font-bold text-white font-headline tracking-widest mb-4 md:mb-6 lg:mb-4 flex items-center gap-4 drop-shadow-lg">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 flex items-center justify-center shadow-lg transition-all duration-500">
+                  <img src="/Logo_T.svg" className="w-8 h-8 md:w-9 md:h-9 object-contain" alt="Logo" />
+                </div>
                 <span>Sarojini at Door</span>
               </div>
               <p className="text-white/60 font-body font-light leading-relaxed text-xs md:text-sm max-w-sm">
