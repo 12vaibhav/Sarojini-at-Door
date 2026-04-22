@@ -82,7 +82,7 @@ export default function Navbar({ onHomeClick, view = 'home' }: { onHomeClick?: (
                 hover: { rotate: 360, scale: 1.1 }
               }}
               transition={{ duration: 1.2, ease: "anticipate" }}
-              className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 flex items-center justify-center shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] transition-all duration-500"
+              className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-black/40 backdrop-blur-xl border border-white/20 flex items-center justify-center shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] transition-all duration-500"
             >
               <img src="/Logo_T.svg" className="w-8 h-8 md:w-10 md:h-10 object-contain drop-shadow-md" alt="Logo" />
             </motion.div>
