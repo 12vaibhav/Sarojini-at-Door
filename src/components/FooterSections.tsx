@@ -190,15 +190,18 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+  const [hasStartedLoading, setHasStartedLoading] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsInView(entry.isIntersecting);
+        if (entry.isIntersecting) setHasStartedLoading(true);
       },
       { 
         threshold: 0.01, 
-        rootMargin: '1200px'
+        rootMargin: '400px' // Balanced margin: loads just before it's needed
       }
     );
 
@@ -214,17 +217,14 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
   }, []);
 
   useEffect(() => {
-    if (videoRef.current) {
+    if (videoRef.current && isReady) {
       if (isInView) {
-        const playPromise = videoRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {});
-        }
+        videoRef.current.play().catch(() => {});
       } else {
         videoRef.current.pause();
       }
     }
-  }, [isInView]);
+  }, [isInView, isReady]);
 
   return (
     <motion.div 
@@ -234,15 +234,22 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className="relative group flex-shrink-0 w-[42vw] md:w-[32vw] lg:w-[calc(20%-20px)] snap-start aspect-[9/16] overflow-hidden border border-on-surface/10 hover:shadow-xl shadow-sm cursor-pointer bg-surface-container rounded-sm"
     >
+      {/* Premium Shimmer Skeleton */}
+      {!isReady && (
+        <div className="absolute inset-0 bg-gradient-to-r from-surface-container via-surface-container-high to-surface-container animate-shimmer" 
+             style={{ backgroundSize: '200% 100%' }} />
+      )}
+
       <video
         ref={videoRef}
-        className="w-full h-full object-cover"
+        className={`w-full h-full object-cover transition-opacity duration-1000 ${isReady ? 'opacity-100' : 'opacity-0'}`}
         style={{ transform: 'translateZ(0)' }}
+        onCanPlay={() => setIsReady(true)}
         muted
         loop
         playsInline
-        preload="auto"
-        src={post}
+        preload="metadata"
+        src={hasStartedLoading ? post : undefined}
       />
       
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 mix-blend-multiply"></div>
