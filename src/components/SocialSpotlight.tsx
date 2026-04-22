@@ -19,21 +19,11 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
 };
 
-function SpotlightVideo({ 
-  post, 
-  index, 
-  isActive, 
-  onPlay 
-}: { 
-  post: string, 
-  index: number, 
-  isActive: boolean,
-  onPlay: (index: number) => void 
-}) {
+function SpotlightVideo({ post, index }: { post: string, index: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isReady, setIsReady] = useState(false);
-  const [isStalled, setIsStalled] = useState(false);
   const [hasStartedLoading, setHasStartedLoading] = useState(false);
 
   useEffect(() => {
@@ -58,22 +48,29 @@ function SpotlightVideo({
     };
   }, []);
 
-  // Handle active state changes
   useEffect(() => {
-    if (!videoRef.current) return;
-    if (isActive) {
-      videoRef.current.play().catch(() => {});
-    } else {
-      videoRef.current.pause();
-    }
-  }, [isActive]);
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleEnded = () => {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    };
+
+    video.addEventListener('ended', handleEnded);
+    return () => video.removeEventListener('ended', handleEnded);
+  }, []);
 
   const handleTogglePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (isActive) {
-      onPlay(-1); // Pause if clicking active video
+    if (!videoRef.current) return;
+    
+    if (isPlaying) {
+      videoRef.current.pause();
+      setIsPlaying(false);
     } else {
-      onPlay(index);
+      videoRef.current.play().catch(() => {});
+      setIsPlaying(true);
     }
   };
 
@@ -84,11 +81,11 @@ function SpotlightVideo({
       variants={smoothFadeUp}
       whileHover={{ y: -8 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="relative group flex-shrink-0 w-[calc(65vw-24px)] md:w-[32vw] lg:w-[calc(20%-20px)] snap-start aspect-[9/16] overflow-hidden border border-on-surface/10 hover:shadow-xl shadow-sm cursor-pointer bg-surface-container rounded-sm will-change-transform"
+      className="relative group flex-shrink-0 w-[calc(50vw-24px)] md:w-[32vw] lg:w-[calc(20%-20px)] snap-start aspect-[9/16] overflow-hidden border border-on-surface/10 hover:shadow-xl shadow-sm cursor-pointer bg-surface-container rounded-sm will-change-transform isolate"
     >
-      {/* Premium Shimmer Skeleton / Buffering Indicator */}
-      {(!isReady || isStalled) && (
-        <div className="absolute inset-0 bg-gradient-to-r from-surface-container via-surface-container-high to-surface-container animate-shimmer z-20" 
+      {/* Premium Shimmer Skeleton */}
+      {!isReady && (
+        <div className="absolute inset-0 bg-gradient-to-r from-surface-container via-surface-container-high to-surface-container animate-shimmer z-10" 
              style={{ backgroundSize: '200% 100%' }} />
       )}
 
@@ -96,33 +93,35 @@ function SpotlightVideo({
         ref={videoRef}
         className={`w-full h-full object-cover transition-opacity duration-1000 ${isReady ? 'opacity-100' : 'opacity-0'}`}
         style={{ transform: 'translateZ(0)' }}
-        onLoadedData={() => setIsReady(true)}
-        onWaiting={() => setIsStalled(true)}
-        onPlaying={() => setIsStalled(false)}
+        onLoadedData={() => {
+          setIsReady(true);
+          if (videoRef.current) {
+            videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+          }
+        }}
         muted
         loop
         playsInline
-        disablePictureInPicture
-        controlsList="nodownload"
-        preload={index < 2 ? "auto" : "metadata"}
+        autoPlay
+        preload="auto"
         src={hasStartedLoading ? `${post}#t=0.001` : undefined}
       />
       
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 mix-blend-multiply"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 mix-blend-multiply pointer-events-none"></div>
       
-      <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-white/10 backdrop-blur-md px-2 md:px-3 py-1 md:py-1.5 flex items-center justify-center border border-white/20 shadow-sm z-30">
+      <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-white/10 backdrop-blur-md px-2 md:px-3 py-1 md:py-1.5 flex items-center justify-center border border-white/20 shadow-sm z-30 pointer-events-none">
         <BadgeCheck className="w-2.5 h-2.5 md:w-3 md:h-3 text-white mr-1 md:mr-1.5" />
         <span className="font-body text-[6px] md:text-[8px] tracking-[0.3em] font-light uppercase text-white">Verified</span>
       </div>
       
-      <div className={`absolute inset-0 flex flex-col justify-end items-center p-3 md:p-6 transition-opacity duration-500 z-40 ${isActive ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
-        <button className="border border-white/40 bg-white/10 backdrop-blur-md text-white py-2 md:py-4 px-3 md:px-6 text-[8px] md:text-[10px] font-body font-medium uppercase tracking-[0.2em] shadow-lg hover:bg-white hover:text-on-surface transition-colors duration-500 w-full outline-none rounded-sm">
-          {isActive ? 'Pause Video' : 'Shop this Look'}
-        </button>
+      <div className={`absolute inset-0 flex flex-col justify-end items-center p-3 md:p-6 transition-opacity duration-500 z-40 ${isPlaying ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
+        <div className="border border-white/40 bg-white/10 backdrop-blur-md text-white py-2 md:py-4 px-3 md:px-6 text-[8px] md:text-[10px] font-body font-medium uppercase tracking-[0.2em] shadow-lg text-center w-full rounded-sm pointer-events-none">
+          {isPlaying ? 'Pause Video' : 'Shop this Look'}
+        </div>
       </div>
       
-      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 z-50 ${isActive ? 'opacity-0 scale-50' : 'opacity-100 scale-100'}`}>
-        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center shadow-2xl hover:bg-white/30 transition-all duration-300">
+      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 z-50 pointer-events-none ${isPlaying ? 'opacity-0 scale-50' : 'opacity-100 scale-100'}`}>
+        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center shadow-2xl">
           <Play className="w-6 h-6 md:w-8 md:h-8 text-white fill-white ml-0.5" />
         </div>
       </div>
@@ -132,7 +131,6 @@ function SpotlightVideo({
 
 export function SocialSpotlight() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeVideoIndex, setActiveVideoIndex] = useState<number>(-1);
   
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -208,13 +206,7 @@ export function SocialSpotlight() {
             viewport={{ once: true, margin: "-100px" }}
           >
             {posts.map((post, i) => (
-              <SpotlightVideo 
-                key={i} 
-                post={post} 
-                index={i} 
-                isActive={activeVideoIndex === i}
-                onPlay={(idx) => setActiveVideoIndex(idx)}
-              />
+              <SpotlightVideo key={i} post={post} index={i} />
             ))}
           </motion.div>
         </div>
