@@ -12,7 +12,7 @@ const staggerContainer = {
 
 export function CuratorStory() {
   return (
-    <section className="py-[47px] md:py-[82px] lg:py-[92px] relative overflow-hidden bg-transparent">
+    <section className="pt-[47px] pb-[120px] md:py-[82px] lg:py-[92px] relative overflow-hidden bg-transparent">
       <div className="absolute inset-0 z-0">
         <img 
           src="/homepage/first_section.webp" 

@@ -154,7 +154,7 @@ export function SocialSpotlight() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 1 }}
-      className="pt-[134px] md:pt-[120px] lg:pt-[136px] pb-8 md:pb-8 lg:pb-8 relative overflow-hidden mt-[-100px] z-50 bg-transparent"
+      className="pt-[134px] md:pt-[120px] lg:pt-[136px] pb-8 md:pb-8 lg:pb-8 relative overflow-hidden mt-[-60px] md:mt-[-100px] z-50 bg-transparent"
     >
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Using a standard gradient instead of mask-image for better mobile perf */}
