@@ -198,7 +198,7 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
         setIsInView(entry.isIntersecting);
         if (entry.isIntersecting) setHasLoaded(true);
       },
-      { threshold: 0.1, rootMargin: '200px' }
+      { threshold: 0.1, rootMargin: '600px' }
     );
 
     if (containerRef.current) {
@@ -241,7 +241,7 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
           muted
           loop
           playsInline
-          preload="none"
+          preload="auto"
         />
       ) : (
         <div className="w-full h-full bg-surface-container flex items-center justify-center">
