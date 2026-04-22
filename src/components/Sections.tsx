@@ -2,14 +2,22 @@ import { Zap, RefreshCw, BadgeCheck, Gem, ArrowRight, ChevronLeft, ChevronRight 
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 
-const fadeUpVariant = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+// High-performance animation variants
+const smoothFadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { 
+      duration: 0.8, 
+      ease: [0.22, 1, 0.36, 1] 
+    } 
+  }
 };
 
 const staggerContainer = {
   hidden: { opacity: 1 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+  visible: { opacity: 1, transition: { staggerChildren: 0.12 } }
 };
 
 export function TrustBadges() {
@@ -22,15 +30,15 @@ export function TrustBadges() {
 
   return (
     <motion.section
-      initial={{ y: 50, opacity: 0 }}
-      whileInView={{ y: 0, opacity: 1 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-      className="relative bg-surface overflow-hidden border-y border-on-surface/5 py-[27px] md:py-[27px] z-40 lg:-mt-10"
+      transition={{ duration: 1 }}
+      className="relative bg-surface overflow-hidden border-y border-on-surface/5 py-[27px] md:py-[27px] z-40 lg:-mt-10 will-change-transform"
     >
-      {/* Brand Color Aura / Mesh Gradient (Theme Consistent) */}
-      <div className="absolute top-0 left-0 w-full md:w-3/4 max-w-[800px] aspect-square bg-primary-fixed/60 rounded-full blur-[80px] md:blur-[100px] opacity-90 mix-blend-multiply pointer-events-none transform -translate-x-1/4 -translate-y-1/4"></div>
-      <div className="absolute bottom-0 right-0 w-full md:w-3/4 max-w-[800px] aspect-square bg-secondary-fixed/70 rounded-full blur-[80px] md:blur-[100px] opacity-90 mix-blend-multiply pointer-events-none transform translate-x-1/4 translate-y-1/4"></div>
+      {/* Brand Color Aura / Mesh Gradient (Optimized for GPU) */}
+      <div className="absolute top-0 left-0 w-full md:w-3/4 max-w-[800px] aspect-square bg-primary-fixed/60 rounded-full blur-[100px] md:blur-[140px] opacity-90 mix-blend-multiply pointer-events-none transform -translate-x-1/4 -translate-y-1/4" style={{ transform: 'translateZ(0)' }}></div>
+      <div className="absolute bottom-0 right-0 w-full md:w-3/4 max-w-[800px] aspect-square bg-secondary-fixed/70 rounded-full blur-[100px] md:blur-[140px] opacity-90 mix-blend-multiply pointer-events-none transform translate-x-1/4 translate-y-1/4" style={{ transform: 'translateZ(0)' }}></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <motion.div
@@ -43,15 +51,21 @@ export function TrustBadges() {
           {badges.map((badge, index) => (
             <motion.div
               key={index}
-              variants={fadeUpVariant}
-              style={{ willChange: "transform, opacity" }}
-              className={`flex flex-col items-center justify-center text-center group cursor-default px-2 md:px-6 ${index % 2 !== 1 ? 'border-r border-on-surface/10' : ''} ${index === 2 ? 'lg:border-r lg:border-on-surface/10' : ''} lg:flex-col lg:text-center`}
+              variants={smoothFadeUp}
+              className={`flex flex-col items-center justify-center text-center group cursor-default px-2 md:px-6 ${index % 2 !== 1 ? 'border-r border-on-surface/10' : ''} ${index === 2 ? 'lg:border-r lg:border-on-surface/10' : ''} lg:flex-col lg:text-center will-change-transform`}
             >
-              <div
+              <motion.div
+                animate={{ y: [0, -4, 0] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: index * 0.5
+                }}
                 className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-on-surface/10 bg-surface group-hover:bg-on-surface flex items-center justify-center mb-1 lg:mb-1.5 shadow-sm group-hover:shadow-md lg:group-hover:scale-110 transition-all duration-500 ease-out flex-shrink-0"
               >
                 <badge.icon className={`w-6 h-6 md:w-7 md:h-7 ${badge.color} group-hover:text-surface transition-colors duration-500 stroke-[1.2]`} />
-              </div>
+              </motion.div>
               <div className="flex flex-col">
                 <h3 className="font-headline text-xs md:text-sm lg:text-base font-light text-on-surface mb-0 md:mb-0.5 lg:mb-0.5 tracking-wide leading-snug">{badge.title}</h3>
                 <p className="font-body text-[6px] md:text-[7px] uppercase tracking-[0.2em] font-medium text-on-surface/50 leading-relaxed">
