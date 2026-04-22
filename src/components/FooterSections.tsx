@@ -190,14 +190,11 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
-  const [hasLoaded, setHasLoaded] = useState(false);
-  const [canPlay, setCanPlay] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsInView(entry.isIntersecting);
-        if (entry.isIntersecting) setHasLoaded(true);
       },
       { 
         threshold: 0.01, 
@@ -217,7 +214,7 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
   }, []);
 
   useEffect(() => {
-    if (videoRef.current && canPlay) {
+    if (videoRef.current) {
       if (isInView) {
         const playPromise = videoRef.current.play();
         if (playPromise !== undefined) {
@@ -227,7 +224,7 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
         videoRef.current.pause();
       }
     }
-  }, [isInView, canPlay]);
+  }, [isInView]);
 
   return (
     <motion.div 
@@ -239,23 +236,15 @@ function SpotlightVideo({ post, index }: { post: string, index: number }) {
     >
       <video
         ref={videoRef}
-        className={`w-full h-full object-cover transition-opacity duration-700 ${canPlay ? 'opacity-100' : 'opacity-0'}`}
+        className="w-full h-full object-cover"
         style={{ transform: 'translateZ(0)' }}
-        onCanPlay={() => setCanPlay(true)}
         muted
         loop
         playsInline
         preload="auto"
-      >
-        {hasLoaded && <source src={post} type="video/mp4" />}
-      </video>
+        src={post}
+      />
       
-      {!canPlay && (
-        <div className="absolute inset-0 flex items-center justify-center bg-surface-container">
-          <div className="w-6 h-6 border-2 border-on-surface/10 border-t-on-surface/40 rounded-full animate-spin" />
-        </div>
-      )}
-
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 mix-blend-multiply"></div>
       
       <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-white/10 backdrop-blur-md px-2 md:px-3 py-1 md:py-1.5 flex items-center justify-center border border-white/20 shadow-sm z-30">
