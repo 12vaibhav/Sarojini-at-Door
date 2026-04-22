@@ -186,7 +186,7 @@ export function SocialSpotlight() {
   );
 }
 
-function SpotlightVideo({ post, index }: { post: string, index: number }) {
+const SpotlightVideo = ({ post, index }: { post: string, index: number }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
