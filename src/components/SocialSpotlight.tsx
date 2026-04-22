@@ -154,11 +154,13 @@ export function SocialSpotlight() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 1 }}
-      className="pt-[134px] md:pt-[120px] lg:pt-[136px] pb-8 md:pb-8 lg:pb-8 relative overflow-hidden mt-[-60px] md:mt-[-100px] z-50 bg-transparent"
+      className="pt-[140px] md:pt-[180px] lg:pt-[220px] pb-8 md:pb-8 lg:pb-8 relative overflow-hidden mt-[-100px] md:mt-[-150px] lg:mt-[-180px] z-50 bg-transparent"
+      style={{
+        maskImage: 'linear-gradient(to bottom, transparent, black 180px)',
+        WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 180px)'
+      }}
     >
       <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Using a standard gradient instead of mask-image for better mobile perf */}
-        <div className="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-transparent z-10 h-32 md:h-40" />
         <img 
           src="/homepage/second_section.webp" 
           alt="" 
