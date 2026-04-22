@@ -57,6 +57,13 @@
   --color-on-background: #373831;
   --color-tertiary: #c41d31;
   --color-deep-charcoal: #1a1a1a;
+
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.75rem;
+  --radius-md: 1.25rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+  --radius-2xl: 4rem;
 }
 
 @utility silk-bg {
@@ -127,4 +134,9 @@
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--color-on-surface-variant) var(--color-background);
+}
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); }
+  100% { transform: translateY(20px) translateX(20px); }
 }

@@ -17,6 +17,9 @@ export default function App() {
   const [view, setView] = useState<'home' | 'product'>('home');
 
   useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
     window.scrollTo(0, 0);
   }, [view]);
 
@@ -66,7 +69,7 @@ export default function App() {
         transition={{ delay: 2, type: "spring", stiffness: 300, damping: 20 }}
         whileHover={{ scale: 1.15, rotate: -5 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-8 right-8 z-[100] bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:shadow-[#25D366]/40 cursor-pointer outline-none" 
+        className="fixed bottom-8 right-8 z-[1100] bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:shadow-[#25D366]/40 cursor-pointer outline-none" 
         href="#"
         aria-label="Chat on WhatsApp"
       >

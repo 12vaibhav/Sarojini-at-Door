@@ -1,7 +1,7 @@
 import { BadgeCheck, Play, Star, MessageCircle, Instagram, Facebook, Twitter, Youtube, CreditCard, Mail, MapPin, ArrowRight, Flower2, ChevronLeft, ChevronRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { motion } from "motion/react";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },
@@ -15,10 +15,7 @@ const staggerContainer = {
 
 export function CuratorStory() {
   return (
-    <section className="py-16 md:py-24 bg-surface relative overflow-hidden">
-      {/* Brand Color Aura / Mesh Gradient */}
-      <div className="absolute top-0 left-0 w-full md:w-3/4 max-w-[800px] aspect-square bg-primary-fixed/40 rounded-full blur-[100px] md:blur-[140px] opacity-90 mix-blend-multiply pointer-events-none transform -translate-x-1/4 -translate-y-1/4"></div>
-      <div className="absolute bottom-0 right-0 w-full md:w-3/4 max-w-[800px] aspect-square bg-secondary-fixed/50 rounded-full blur-[100px] md:blur-[140px] opacity-90 mix-blend-multiply pointer-events-none transform translate-x-1/4 translate-y-1/4"></div>
+    <section className="py-[47px] md:py-[82px] lg:py-[92px] relative overflow-hidden bg-cover bg-center bg-no-repeat bg-[url('/homepage/first_section.webp')]">
       
       {/* Invisible SVG definition for the Vintage Frame shape */}
       <svg width="0" height="0" className="absolute pointer-events-none">
@@ -31,7 +28,7 @@ export function CuratorStory() {
       
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-4 relative z-10">
         <motion.div 
-          className="grid grid-cols-2 lg:grid-cols-12 gap-x-4 md:gap-x-8 gap-y-12 lg:gap-12 items-center"
+          className="grid grid-cols-2 lg:grid-cols-12 gap-x-4 md:gap-x-8 lg:gap-x-6 gap-y-8 md:gap-y-8 lg:gap-y-8 items-center"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -41,12 +38,12 @@ export function CuratorStory() {
             {/* Card 1 */}
             <div className="drop-shadow-md transition-transform duration-700 lg:hover:-translate-y-2 group cursor-pointer max-w-[160px] sm:max-w-[220px] md:max-w-[280px] lg:max-w-[380px] w-full">
               <div 
-                className="aspect-[3/4] rounded-full overflow-hidden bg-white w-full h-full shadow-xl lg:shadow-2xl border-4 border-white"
+                className="aspect-[3/4] rounded-[48px] overflow-hidden bg-white w-full h-full shadow-xl lg:shadow-2xl border-2 border-[#d4af37]/30"
               >
                 <img
                   alt="High-fashion editorial look"
                   className="w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] lg:group-hover:scale-105"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA96kCpLzHuBtEh_4vdOLMJZI0APGOveAuF2rQUWFNrjLopUj3P2vgOuIzGYzJL99G79_8aU3Y4oWxNdI_zXxUp5ZarPeQD0cdEJBoBi4ml6ENfkUGWDmPNmY4VRQTzY9-yjfLsuwIUW7RXF7mi7wba2i8w04zmiH7JauyC8OGzaFwZg_0OxeDbR4R-vK2jyfsoH2hutp8xUGvVn8mQZBtlrwntrS5BoLdAeZVNmim9nZDoBdsjNEQxnjdjtVGaYk6I1A43Ah5X1kI"
+                  src="/Product%20Images/S1.webp"
                   referrerPolicy="no-referrer"
                 />
               </div>
@@ -56,14 +53,14 @@ export function CuratorStory() {
             <div className="absolute inset-0 flex items-center justify-center -z-10 pointer-events-none">
               <span className="font-headline text-[28vw] lg:text-[20vw] font-light italic text-on-surface leading-none select-none tracking-tighter opacity-[0.04] lg:opacity-[0.02]">10k+</span>
             </div>
-            <div className="space-y-6 md:space-y-8">
-              <div className="space-y-4 md:space-y-6">
-                <span className="font-body text-[8px] md:text-[10px] tracking-[0.4em] font-extralight uppercase text-on-surface/60 leading-relaxed">The Curator's Story</span>
-                <h2 className="font-headline text-3xl md:text-5xl lg:text-6xl font-light leading-snug tracking-tight text-primary">
+            <div className="space-y-5 md:space-y-8 lg:space-y-6">
+              <div className="space-y-3 md:space-y-6 lg:space-y-4">
+                <span className="font-body text-[10px] md:text-sm tracking-[0.3em] font-medium uppercase text-secondary opacity-60 leading-relaxed">The Curator's Story</span>
+                <h2 className="font-headline text-3xl md:text-5xl lg:text-6xl font-light leading-snug tracking-tight text-inverse-surface">
                   We found your style in a <i className="text-secondary">hidden alley.</i>
                 </h2>
               </div>
-              <p className="font-body text-[13px] md:text-base text-on-surface/70 leading-relaxed max-w-[280px] sm:max-w-sm md:max-w-md mx-auto font-light">
+              <p className="font-body text-[15px] md:text-lg text-on-surface/70 leading-relaxed max-w-[280px] sm:max-w-sm md:max-w-md mx-auto font-light">
                 Born from the love of the hunt, we navigate the maze of Delhi's most iconic market to find gems you'd otherwise miss. Each piece is curated for its soul, quality, and trend-setting potential.
               </p>
               <div className="w-full pt-4 md:pt-6">
@@ -77,12 +74,12 @@ export function CuratorStory() {
             {/* Card 3 */}
             <div className="drop-shadow-md transition-transform duration-700 lg:hover:-translate-y-2 group cursor-pointer max-w-[160px] sm:max-w-[220px] md:max-w-[280px] lg:max-w-[380px] w-full">
               <div 
-                className="aspect-[3/4] rounded-full overflow-hidden bg-white w-full h-full shadow-xl lg:shadow-2xl border-4 border-white"
+                className="aspect-[3/4] rounded-[48px] overflow-hidden bg-white w-full h-full shadow-xl lg:shadow-2xl border-2 border-[#d4af37]/30"
               >
                 <img
                   alt="Modern fashion rack curation"
                   className="w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] lg:group-hover:scale-105"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdZdTQqlV2tf7S1YpeNHzxtf_h3R4tz3d1MYaFB2xsPidtKsjztvHszPGpxpxu2G_mJtav-ZXqADGNemqkPk7-FXZMKS7_MbVUrdoB34wk4clrUxQDAFAo8gd9zBpBjviwgKwJD_3NmneDauccFyrqKnokoDvVr0bmHGgxUMctRIgratK3C5d9kvKyHnHFJV9Em4PVcA1GBmffASYejJFrbbvPoFSYuDayqLUYO3gznUURUnTW-jsGw0t5bn8ML8J2pe0pNcdanGc"
+                  src="/Product%20Images/S2.webp"
                   referrerPolicy="no-referrer"
                 />
               </div>
@@ -105,18 +102,22 @@ export function SocialSpotlight() {
   };
 
   const posts = [
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuDSkIoZkUW0SV7tA_KZJ_S7Crp82CFy6XBzlHw57FCt2WmCJyWn1hr9FUtn0W1JEnoEt5wSWOy-fQf-RI7TCwjKLrIzx0MKSzNkIAY4hCY4f9vpoY8ZkziY3hz_p_GqoIwl9SWbqViFubBAiX0Gqb671sXeiwoF6I_av8_7DSwcX5N79oHj9AEXctU6i2iJIPTMdRQJnrWW7w5_2Tyk8Z3VEN8S4xMtMcUI7zbM4zNbE6q_Md_z2O0ky9HqWTVLdRxE8PD1LinL6xc",
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuDnfbdaqxTVsWTpIKAMIWiSw7JZNdzJSR2Cbz0jpF2GniKpkg-bMzxFIKHGxAck80gX3c4iIlgQBSbecIjLn8qGXeTYwB_NxxYS0qfKfJn_-W2c4xw-gqa2OK76KayGPelhn1HWN_deVi5cPq0tDJPWwdeApRFdpLejOwZzENomkznovMVDmDLiNPrx35QSUXPvoWCRWgwoAkMYua_mlPV9jxnamls6jRvJOrhVv7geQae0csyCPl4B0KMdcGnkT0BIcd4Dr3SxUjk",
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuD-ZHZCH2WdkA8mCJ6ZhTUf0bIy9pzSuHgLhbW03-8efRPH8_2oE05zvcFZ9mhQUGLtbLRZG9X0FflGPkEjXgY7WSodS9AK-6iPBrSt5c-q_dQnHtg-masWCg1ZAPFnDF4UT6-Dy-hP1N7GBF-NpTpB2-t2_snHRSwz4qBFVoIIMN9Kz7YoXxckHLHjZUDi45dBQDNZTL4_xPLVOOLDyIQINrfGKTh3zYglCqIZR0sW4X21C9JyDhUD0rc6jiHw2e7s4B158h8LhO4",
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuC9mGfPmIAe4DyE_ZstCJWxjzethw6PYRn23uMljA4qNomVdqmX5EIMt4MkJ_8VaWvgMn1wBwHCDyPZWRBoFsF4SsfqiLE-vOwKy3n1bquR6JUx8smu4UC98XQWC3p-Z34HZKzYp_YdnziVJE2bLVBP4t9gG3jZtuIH59Y2bkAyvtnUmxiMzN_vLBiMiZzN-FN_1AKtb_xyY4znYh_7BHhuOuU6a3RecJ7CnUb5bXjhQgqJFgZOxjAFn70ujLQyT-KOE9r2loNDurM",
-    "https://picsum.photos/seed/editorial-vibe/900/1600"
+    "/Product%20Images/Videos/Video-1.mp4#t=10",
+    "/Product%20Images/Videos/Video-2.mp4#t=10",
+    "/Product%20Images/Videos/Video-3.mp4#t=6",
+    "/Product%20Images/Videos/Video-4.mp4#t=6",
+    "/Product%20Images/Videos/Video-5.mp4#t=6",
+    "/Product%20Images/Videos/Video-6.mp4#t=6"
   ];
 
   return (
-    <section className="py-12 relative bg-surface overflow-hidden border-t border-on-surface/5">
-      {/* Brand Color Aura / Mesh Gradient */}
-      <div className="absolute top-0 left-0 w-full md:w-3/4 max-w-[800px] aspect-square bg-primary-fixed/40 rounded-full blur-[100px] md:blur-[140px] opacity-90 mix-blend-multiply pointer-events-none transform -translate-x-1/4 -translate-y-1/4"></div>
-      <div className="absolute bottom-0 right-0 w-full md:w-3/4 max-w-[800px] aspect-square bg-secondary-fixed/50 rounded-full blur-[100px] md:blur-[140px] opacity-90 mix-blend-multiply pointer-events-none transform translate-x-1/4 translate-y-1/4"></div>
+    <section 
+      className="pt-[134px] md:pt-[120px] lg:pt-[136px] pb-8 md:pb-8 lg:pb-8 relative overflow-hidden bg-cover bg-center bg-no-repeat bg-[url('/homepage/second_section.webp')] mt-[-100px] z-50"
+      style={{ 
+        maskImage: 'linear-gradient(to bottom, transparent, black 150px)',
+        WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 150px)'
+      }}
+    >
 
       <div className="max-w-screen-2xl mx-auto relative z-10">
         <motion.div 
@@ -124,10 +125,10 @@ export function SocialSpotlight() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={fadeUpVariant}
-          className="flex flex-col items-center mb-8 md:mb-12 text-center px-6"
+          className="flex flex-col items-center mb-6 md:mb-8 lg:mb-8 text-center px-6"
         >
-          <span className="font-body text-[9px] md:text-[10px] tracking-[0.4em] font-extralight uppercase text-on-surface/60 mb-4 md:mb-6 leading-relaxed">Cinematic Spotlight</span>
-          <h2 className="font-headline text-3xl md:text-5xl lg:text-6xl font-light tracking-tight text-primary mb-4 md:mb-6 leading-snug">#Wear<i className="text-secondary">TheBazaar</i></h2>
+          <span className="font-body text-[10px] md:text-sm tracking-[0.3em] font-medium uppercase text-secondary opacity-60 mb-4 md:mb-6 lg:mb-4 leading-relaxed">Cinematic Spotlight</span>
+          <h2 className="font-headline text-3xl md:text-5xl lg:text-6xl font-light tracking-tight text-inverse-surface mb-4 md:mb-6 lg:mb-4 leading-snug">#Wear<i className="text-secondary">TheBazaar</i></h2>
           <p className="font-body text-xs md:text-base text-on-surface/70 leading-relaxed max-w-sm md:max-w-md font-light">Discover professional-grade styling from our collective. High-street soul meets editorial standards.</p>
         </motion.div>
         
@@ -151,50 +152,91 @@ export function SocialSpotlight() {
 
           <motion.div 
             ref={scrollRef}
-            className="grid grid-rows-2 grid-flow-col lg:flex lg:flex-row overflow-x-auto gap-4 md:gap-8 hide-scrollbar snap-x snap-mandatory pb-8 pt-4 px-4 md:px-12 scroll-pl-4 md:scroll-pl-12"
+            className="grid grid-rows-2 grid-flow-col lg:flex lg:flex-row overflow-x-auto gap-4 md:gap-6 lg:gap-6 hide-scrollbar snap-x snap-mandatory pb-6 md:pb-6 lg:pb-6 pt-2 md:pt-4 lg:pt-4 px-4 md:px-12 scroll-pl-4 md:scroll-pl-12"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
           >
             {posts.map((post, i) => (
-              <motion.div 
-                key={i} 
-                variants={fadeUpVariant}
-                whileHover={{ y: -10 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="relative group flex-shrink-0 w-[44vw] md:w-[45vw] lg:w-[calc(25%-24px)] snap-start aspect-[9/16] overflow-hidden border border-on-surface/10 hover:shadow-xl shadow-sm cursor-pointer bg-white rounded-sm"
-              >
-              <motion.img
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
-                alt={`User styling ${i + 1}`}
-                className="w-full h-full object-cover"
-                src={post}
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 mix-blend-multiply"></div>
-              
-              <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-white/10 backdrop-blur-md px-2 md:px-3 py-1 md:py-1.5 flex items-center justify-center border border-white/20 shadow-sm z-30">
-                <BadgeCheck className="w-2.5 h-2.5 md:w-3 md:h-3 text-white mr-1 md:mr-1.5" />
-                <span className="font-body text-[6px] md:text-[8px] tracking-[0.3em] font-light uppercase text-white">Verified</span>
-              </div>
-              
-              <div className="absolute inset-0 flex flex-col justify-end items-center p-3 md:p-6 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500 z-40">
-                <button className="border border-white/40 bg-white/10 backdrop-blur-md text-white py-2 md:py-4 px-3 md:px-6 text-[8px] md:text-[10px] font-body font-medium uppercase tracking-[0.2em] shadow-lg hover:bg-white hover:text-on-surface transition-colors duration-500 w-full outline-none rounded-sm">
-                  Shop this Look
-                </button>
-              </div>
-              
-              <div className="absolute bottom-16 md:bottom-24 lg:bottom-8 left-1/2 -translate-x-1/2 opacity-100 lg:group-hover:opacity-0 transition-opacity duration-500">
-                <Play className="w-6 h-6 md:w-10 md:h-10 text-white stroke-[1] fill-white/20 drop-shadow-md" />
-              </div>
-            </motion.div>
-          ))}
+              <SpotlightVideo key={i} post={post} index={i} />
+            ))}
           </motion.div>
         </div>
       </div>
     </section>
+  );
+}
+
+function SpotlightVideo({ post, index }: { post: string, index: number }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => {
+      if (videoRef.current) {
+        observer.unobserve(videoRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isInView) {
+        videoRef.current.play().catch(() => {});
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  }, [isInView]);
+
+  return (
+    <motion.div 
+      variants={fadeUpVariant}
+      whileHover={{ y: -10 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className="relative group flex-shrink-0 w-[42vw] md:w-[32vw] lg:w-[calc(20%-20px)] snap-start aspect-[9/16] overflow-hidden border border-on-surface/10 hover:shadow-xl shadow-sm cursor-pointer bg-white rounded-sm"
+    >
+      <motion.video
+        ref={videoRef}
+        whileHover={{ scale: 1.05 }}
+        transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
+        className="w-full h-full object-cover"
+        style={{ transform: 'translateZ(0)' }}
+        src={post}
+        muted
+        loop
+        playsInline
+        preload="metadata"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 mix-blend-multiply"></div>
+      
+      <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-white/10 backdrop-blur-md px-2 md:px-3 py-1 md:py-1.5 flex items-center justify-center border border-white/20 shadow-sm z-30">
+        <BadgeCheck className="w-2.5 h-2.5 md:w-3 md:h-3 text-white mr-1 md:mr-1.5" />
+        <span className="font-body text-[6px] md:text-[8px] tracking-[0.3em] font-light uppercase text-white">Verified</span>
+      </div>
+      
+      <div className="absolute inset-0 flex flex-col justify-end items-center p-3 md:p-6 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500 z-40">
+        <button className="border border-white/40 bg-white/10 backdrop-blur-md text-white py-2 md:py-4 px-3 md:px-6 text-[8px] md:text-[10px] font-body font-medium uppercase tracking-[0.2em] shadow-lg hover:bg-white hover:text-on-surface transition-colors duration-500 w-full outline-none rounded-sm">
+          Shop this Look
+        </button>
+      </div>
+      
+      <div className="absolute bottom-16 md:bottom-24 lg:bottom-8 left-1/2 -translate-x-1/2 opacity-100 lg:group-hover:opacity-0 transition-opacity duration-500">
+        <Play className="w-6 h-6 md:w-10 md:h-10 text-white stroke-[1] fill-white/20 drop-shadow-md" />
+      </div>
+    </motion.div>
   );
 }
 
@@ -213,10 +255,13 @@ export function Testimonials() {
   const duplicatedReviews = [...reviews, ...reviews];
 
   return (
-    <section className="py-10 relative bg-surface overflow-hidden">
-      {/* Brand Color Aura / Mesh Gradient */}
-      <div className="absolute top-0 left-0 w-full md:w-3/4 max-w-[800px] aspect-square bg-primary-fixed/40 rounded-full blur-[100px] md:blur-[140px] opacity-90 mix-blend-multiply pointer-events-none transform -translate-x-1/4 -translate-y-1/4"></div>
-      <div className="absolute bottom-0 right-0 w-full md:w-3/4 max-w-[800px] aspect-square bg-secondary-fixed/50 rounded-full blur-[100px] md:blur-[140px] opacity-90 mix-blend-multiply pointer-events-none transform translate-x-1/4 translate-y-1/4"></div>
+    <section 
+      className="pt-[134px] md:pt-[120px] lg:pt-[136px] pb-8 md:pb-8 lg:py-8 relative overflow-hidden bg-cover bg-center bg-no-repeat bg-[url('/homepage/third_section.webp')] mt-[-100px] z-[60]"
+      style={{ 
+        maskImage: 'linear-gradient(to bottom, transparent, black 150px)',
+        WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 150px)'
+      }}
+    >
 
       <div className="relative z-10">
         <motion.div 
@@ -224,19 +269,19 @@ export function Testimonials() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={fadeUpVariant}
-          className="flex flex-col items-center mb-8 md:mb-12 text-center max-w-7xl mx-auto px-6"
+          className="flex flex-col items-center mb-6 md:mb-8 lg:mb-8 text-center max-w-7xl mx-auto px-6"
         >
-          <span className="font-body text-[9px] md:text-[12px] tracking-[0.4em] font-extralight uppercase text-on-surface/60 mb-3 md:mb-4 leading-relaxed">Voice of the Collective</span>
-          <h2 className="font-headline text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-primary leading-snug">Patron <i className="text-secondary">Chronicles</i></h2>
+          <span className="font-body text-[10px] md:text-sm tracking-[0.3em] font-medium uppercase text-secondary opacity-60 mb-3 md:mb-4 lg:mb-4 leading-relaxed">Voice of the Collective</span>
+          <h2 className="font-headline text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-inverse-surface leading-snug">Patron <i className="text-secondary">Chronicles</i></h2>
         </motion.div>
         
         <div className="relative">
           {/* Gradient Fades for Smooth Edges */}
-          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-surface to-transparent z-20 pointer-events-none"></div>
-          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-surface to-transparent z-20 pointer-events-none"></div>
+          <div className="absolute top-0 bottom-6 left-0 w-12 md:w-24 bg-gradient-to-r from-surface to-transparent z-20 pointer-events-none"></div>
+          <div className="absolute top-0 bottom-6 right-0 w-12 md:w-24 bg-gradient-to-l from-surface to-transparent z-20 pointer-events-none"></div>
 
           <motion.div 
-            className="flex gap-4 w-max grayscale hover:grayscale-0 transition-[filter] duration-700 pb-6 cursor-grab active:cursor-grabbing"
+            className="flex gap-4 w-max transition-[filter] duration-700 pb-6 cursor-grab active:cursor-grabbing"
             animate={{ x: ["0%", "-50%"] }}
             transition={{
               duration: 50,
@@ -247,23 +292,73 @@ export function Testimonials() {
             {duplicatedReviews.map((review, i) => (
               <div 
                 key={i} 
-                className="relative bg-white border border-on-surface/5 p-5 shadow-sm hover:shadow-xl transition-all duration-700 overflow-hidden group w-[260px] md:w-[340px] shrink-0 rounded-sm"
+                className="relative bg-[#fcf9f2] py-4 px-6 md:p-6 shadow-2xl transition-all duration-700 overflow-hidden group w-[260px] h-[325px] md:w-[335px] md:h-auto shrink-0 border-[0.5px] border-[#d4af37]/40 flex flex-col items-center text-center"
               >
-                <div className="absolute top-0 left-3 text-[4rem] font-headline text-on-surface/5 select-none pointer-events-none group-hover:text-on-surface/10 transition-colors duration-500 leading-none">“</div>
-                <div className="relative z-10 flex flex-col h-full space-y-4">
-                  <div className="flex items-center gap-1.5 font-light text-on-surface tracking-widest text-sm">
-                    <span>5.0</span>
-                    <Star className="w-3 h-3 text-secondary fill-secondary opacity-80" />
-                  </div>
-                  <p className="font-headline font-light italic leading-relaxed text-on-surface/90 flex-1 text-sm lg:text-base">"{review.text}"</p>
-                  <div className="pt-3 border-t border-on-surface/10 flex items-center justify-between">
-                    <div>
-                      <h4 className="font-body font-medium text-[9px] tracking-[0.1em] uppercase text-on-surface">{review.name}</h4>
-                      <p className="text-[7px] text-on-surface/50 font-light tracking-[0.2em] uppercase mt-0.5">Verified Patron</p>
+                {/* Paper Texture Overlay */}
+                <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/paper-fibers.png')]"></div>
+                
+                {/* Ornate Gold Corners */}
+                <div className="absolute top-2 left-2 w-8 h-8 md:w-10 md:h-10 border-t-[1.5px] border-l-[1.5px] border-[#d4af37]/50 rounded-tl-[2px] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:border-t-[0.5px] before:border-l-[0.5px] before:border-[#d4af37]/30 before:-m-[3px]">
+                   <div className="absolute top-0 left-0 w-2 h-2 bg-[#d4af37] rounded-full -translate-x-1/2 -translate-y-1/2 scale-50" />
+                </div>
+                <div className="absolute top-2 right-2 w-8 h-8 md:w-10 md:h-10 border-t-[1.5px] border-r-[1.5px] border-[#d4af37]/50 rounded-tr-[2px]">
+                   <div className="absolute top-0 right-0 w-2 h-2 bg-[#d4af37] rounded-full translate-x-1/2 -translate-y-1/2 scale-50" />
+                </div>
+                <div className="absolute bottom-2 left-2 w-8 h-8 md:w-10 md:h-10 border-b-[1.5px] border-l-[1.5px] border-[#d4af37]/50 rounded-bl-[2px]">
+                   <div className="absolute bottom-0 left-0 w-2 h-2 bg-[#d4af37] rounded-full -translate-x-1/2 translate-y-1/2 scale-50" />
+                </div>
+                <div className="absolute bottom-2 right-2 w-8 h-8 md:w-10 md:h-10 border-b-[1.5px] border-r-[1.5px] border-[#d4af37]/50 rounded-br-[2px]">
+                   <div className="absolute bottom-0 right-0 w-2 h-2 bg-[#d4af37] rounded-full translate-x-1/2 translate-y-1/2 scale-50" />
+                </div>
+
+                {/* Main Content Layout */}
+                <div className="relative z-10 flex flex-col items-center w-full h-full">
+                  {/* Top Golden Seal */}
+                  <div className="mb-1 md:mb-4 relative">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#d4af37] via-[#f9e29c] to-[#b8860b] rounded-full shadow-lg border border-white/20 flex items-center justify-center relative z-20">
+                      <Star className="w-6 h-6 text-[#5c4a1e] fill-[#5c4a1e]/10 stroke-[1.5]" />
                     </div>
-                    <div className="w-8 h-8 border border-on-surface/20 flex items-center justify-center font-headline italic text-[12px] text-on-surface/70 shrink-0">{review.initial}</div>
+                    {/* Seal Rays/Aura */}
+                    <div className="absolute inset-0 bg-[#d4af37]/20 blur-xl rounded-full scale-150 -z-10 animate-pulse" />
+                  </div>
+
+                  {/* Review Text */}
+                  <div className="flex-1 flex flex-col justify-center mb-2 md:mb-4">
+                    <div className="text-[#d4af37]/40 text-xl md:text-2xl font-headline leading-none mb-0 md:mb-1">“</div>
+                    <p className="font-headline font-light italic leading-relaxed text-[#4a4030] text-sm md:text-base lg:text-lg px-2 md:px-4">
+                      {review.text}
+                    </p>
+                    <div className="text-[#d4af37]/40 text-xl md:text-2xl font-headline leading-none mt-0 md:mt-1 rotate-180">“</div>
+                  </div>
+                  
+                  {/* Bottom Info Section */}
+                  <div className="w-full mt-auto">
+                    {/* Decorative Ribbon/Bar */}
+                    <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent mb-2 md:mb-4" />
+                    
+                    <div className="flex items-center gap-3 md:flex-col md:items-center md:space-y-2 text-left md:text-center">
+                      {/* Portrait Seal */}
+                      <div className="w-10 h-10 rounded-full border-[1.5px] border-[#d4af37]/60 p-0.5 bg-white shadow-inner flex items-center justify-center overflow-hidden">
+                        <div className="w-full h-full rounded-full bg-[#fdfaf5] flex items-center justify-center font-headline italic text-base text-[#b8860b]">
+                          {review.initial}
+                        </div>
+                      </div>
+                      
+                      <div className="flex flex-col items-start md:items-center">
+                        <h4 className="font-body font-semibold text-[9px] md:text-[10px] tracking-[0.25em] uppercase text-[#5c4a1e] mb-0.5">{review.name}</h4>
+                        <div className="flex items-center gap-1">
+                          {[...Array(5)].map((_, idx) => (
+                            <Star key={idx} className="w-2 h-2 text-[#d4af37] fill-[#d4af37]" />
+                          ))}
+                          <span className="font-body text-[7px] text-[#b8860b] tracking-widest uppercase ml-1">Verified Patron</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
+
+                {/* Inner Fine Gold Border */}
+                <div className="absolute inset-2 md:inset-4 border-[0.5px] border-[#d4af37]/20 pointer-events-none z-0" />
               </div>
             ))}
           </motion.div>
@@ -275,9 +370,13 @@ export function Testimonials() {
 
 export function Newsletter() {
   return (
-    <section className="bg-black text-white py-16 md:py-24 relative overflow-hidden">
-      {/* Subtle Background Aura matching PromoBanner style but fitting the footer continuum */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[300px] bg-primary-fixed/30 blur-[120px] rounded-full pointer-events-none"></div>
+    <section 
+      className="pt-[144px] md:pt-[160px] lg:pt-[176px] pb-[37px] md:pb-[72px] relative overflow-hidden bg-cover bg-center bg-no-repeat bg-[url('/homepage/first_section.webp')] mt-[-100px] z-[70]"
+      style={{ 
+        maskImage: 'linear-gradient(to bottom, transparent, black 150px)',
+        WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 150px)'
+      }}
+    >
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Elegant Invitation Box */}
@@ -286,52 +385,54 @@ export function Newsletter() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={fadeUpVariant}
-          className="border border-white/15 bg-white/5 backdrop-blur-sm p-6 sm:p-10 md:p-12 lg:p-12 flex flex-col lg:flex-row justify-between items-center gap-10 lg:gap-12 rounded-sm"
+          className="border border-secondary/20 bg-secondary-fixed/40 backdrop-blur-3xl p-5 md:p-12 lg:p-8 flex flex-col lg:flex-row justify-between items-center gap-4 md:gap-10 lg:gap-8 rounded-sm shadow-2xl"
         >
           
           {/* Left Side: Typography */}
           <div className="flex-1 text-center lg:text-left">
-            <div className="flex items-center justify-center lg:justify-start gap-4 mb-4 md:mb-6">
-               <Mail className="w-4 h-4 md:w-5 md:h-5 text-white/70 stroke-[1.5]" />
-               <p className="font-body text-[7px] md:text-[10px] text-white/70 tracking-[0.4em] uppercase font-extralight leading-relaxed">The Insider List</p>
+            <div className="flex items-center justify-center lg:justify-start gap-4 mb-4 md:mb-6 lg:mb-4">
+               <Mail className="w-4 h-4 md:w-5 md:h-5 text-on-surface/70 stroke-[1.5]" />
+               <p className="font-body text-[7px] md:text-[10px] text-on-surface/70 tracking-[0.4em] uppercase font-bold leading-relaxed">The Insider List</p>
             </div>
-            <h2 className="font-headline text-3xl md:text-5xl lg:text-6xl font-light tracking-tight mb-4 md:mb-6 leading-tight lg:leading-snug">
+            <h2 className="font-headline text-2xl md:text-5xl lg:text-6xl font-light tracking-tight mb-3 md:mb-6 lg:mb-4 leading-tight lg:leading-snug text-on-surface">
               Curated drops, to your <i className="text-secondary font-serif italic text-[1.05em]">sanctuary.</i>
             </h2>
-            <p className="font-body text-[8px] md:text-xs text-white/60 font-light tracking-[0.2em] uppercase leading-relaxed max-w-[250px] mx-auto lg:mx-0">Join our private circle of 50k+ patrons.</p>
+            <p className="font-body text-[8px] md:text-xs text-on-surface/60 font-medium tracking-[0.2em] uppercase leading-relaxed max-w-[250px] mx-auto lg:mx-0">Join our private circle of 50k+ patrons.</p>
           </div>
           
           {/* Right Side: Form & Action */}
-          <div className="w-full lg:w-auto flex flex-col items-center lg:items-end border-t lg:border-t-0 lg:border-l border-white/15 pt-8 lg:pt-0 lg:pl-12">
+          <div className="w-full lg:w-auto flex flex-col items-center lg:items-end border-t lg:border-t-0 lg:border-l border-on-surface/10 pt-6 lg:pt-0 lg:pl-12">
             
-            <div className="w-full max-w-sm flex items-center border-b border-white/30 focus-within:border-white transition-colors duration-500 pb-3 md:pb-4 group/input mb-8 md:mb-10">
-              <input 
-                className="w-full bg-transparent px-2 text-white font-light focus:outline-none placeholder:text-white/40 text-[15px] md:text-lg lg:text-base placeholder:font-extralight text-center lg:text-left" 
-                placeholder="Enter email destination" 
-                type="email" 
-              />
-              <button className="shrink-0 flex items-center gap-4 text-[9px] md:text-[12px] lg:text-[10px] uppercase tracking-[0.2em] font-bold hover:text-primary-fixed transition-colors pr-4 text-white outline-none">
-                Subscribe <ArrowRight className="w-4 h-4 transition-transform group-hover/input:translate-x-1" />
-              </button>
+            <div className="w-full max-w-sm relative group/input mb-8 md:mb-8 lg:mb-6">
+              <div className="flex items-center bg-white/50 border border-on-surface/10 focus-within:border-secondary/50 focus-within:bg-white/80 transition-all duration-500 rounded-sm shadow-inner">
+                <input 
+                  className="w-full bg-transparent px-4 md:px-6 py-3 md:py-4 text-on-surface font-medium focus:outline-none placeholder:text-on-surface/30 text-xs md:text-base lg:text-sm placeholder:font-light" 
+                  placeholder="Enter email destination" 
+                  type="email" 
+                />
+                <button className="shrink-0 flex items-center gap-3 text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-bold hover:text-secondary transition-colors pr-6 text-on-surface outline-none">
+                  Subscribe <ArrowRight className="w-4 h-4 transition-transform group-hover/input:translate-x-1" />
+                </button>
+              </div>
             </div>
 
             <div className="flex flex-col items-center lg:items-end w-full">
-              <p className="font-body text-[7px] md:text-[9px] text-white/60 tracking-[0.4em] uppercase font-extralight mb-4 md:mb-6 leading-relaxed">Also Available</p>
+              <p className="font-body text-[7px] md:text-[9px] text-on-surface/60 tracking-[0.4em] uppercase font-bold mb-4 md:mb-6 leading-relaxed">Also Available</p>
               
               <motion.a 
                 whileHover={{ scale: 1.05, backgroundColor: "#25D366", borderColor: "#25D366", color: "white" }}
                 whileTap={{ scale: 0.95 }}
                 href="#" 
-                className="flex items-center gap-4 md:gap-6 py-3 md:py-4 px-6 border border-[#25D366]/30 bg-white/5 transition-all duration-500 group/wa shadow-xl w-full sm:w-auto justify-center rounded-sm"
+                className="flex items-center gap-4 md:gap-6 py-2.5 md:py-4 px-6 border border-[#25D366]/30 bg-[#DCF8C6]/60 backdrop-blur-md transition-all duration-500 group/wa shadow-xl w-full sm:w-auto justify-center rounded-sm"
               >
                 <span className="text-[#25D366] group-hover/wa:text-white transition-colors shrink-0 flex items-center justify-center w-4 h-4 md:w-5 md:h-5">
                   <FaWhatsapp size={20} />
                 </span>
                 <div className="text-left">
-                  <div className="text-[9px] md:text-[10px] font-headline tracking-widest uppercase text-white transition-colors">WhatsApp VIP</div>
+                  <div className="text-[9px] md:text-[10px] font-headline tracking-widest uppercase text-on-surface group-hover/wa:text-white transition-colors">WhatsApp VIP</div>
                 </div>
               </motion.a>
-              <p className="font-body text-[7px] text-white/25 tracking-[0.3em] uppercase font-extralight mt-4 leading-relaxed">Flash alerts & priority access</p>
+              <p className="font-body text-[9px] text-on-surface/40 tracking-[0.3em] uppercase font-bold mt-4 leading-relaxed">Flash alerts & priority access</p>
             </div>
 
           </div>
@@ -344,7 +445,7 @@ export function Newsletter() {
 
 export function Footer() {
   return (
-    <footer className="bg-black py-12 relative overflow-hidden border-t border-white/10">
+    <footer className="bg-black py-12 lg:py-8 relative overflow-hidden border-t border-white/10">
       {/* Huge subtle atmospheric background typography */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full text-center overflow-hidden pointer-events-none select-none flex items-center justify-center opacity-5">
         <h2 className="font-headline text-[25vw] leading-none tracking-tighter text-white italic whitespace-nowrap mt-8">SAROJINI</h2>
@@ -352,7 +453,7 @@ export function Footer() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div 
-          className="grid grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-12 pb-12 border-b border-white/10"
+          className="grid grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-12 lg:gap-y-8 pb-12 lg:pb-8 border-b border-white/10"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -362,7 +463,7 @@ export function Footer() {
           {/* Brand Column */}
           <motion.div variants={fadeUpVariant} className="col-span-2 lg:col-span-4 flex flex-col justify-between h-full space-y-8">
             <div>
-              <div className="text-xl md:text-2xl font-bold text-white font-headline tracking-widest mb-4 md:mb-6 flex items-center gap-3 drop-shadow-lg">
+              <div className="text-xl md:text-2xl font-bold text-white font-headline tracking-widest mb-4 md:mb-6 lg:mb-4 flex items-center gap-3 drop-shadow-lg">
                 <Flower2 className="w-7 h-7 md:w-8 md:h-8 fill-white" />
                 <span>Sarojini at Door</span>
               </div>
@@ -387,9 +488,9 @@ export function Footer() {
           </motion.div>
 
           {/* Links Columns */}
-          <motion.div variants={fadeUpVariant} className="col-span-1 lg:col-span-2 lg:col-start-6 space-y-6 lg:space-y-8 mt-4 lg:mt-0">
+          <motion.div variants={fadeUpVariant} className="col-span-1 lg:col-span-2 lg:col-start-6 space-y-6 md:space-y-6 lg:space-y-6 mt-4 lg:mt-0">
             <h4 className="text-white font-body font-medium text-[8px] md:text-[9px] uppercase tracking-[0.3em] leading-relaxed">Bazaar</h4>
-            <ul className="space-y-3 md:space-y-4 text-white/60 font-body text-[11px] md:text-xs font-light tracking-wide">
+            <ul className="space-y-3 md:space-y-4 lg:space-y-3 text-white/60 font-body text-[11px] md:text-xs font-light tracking-wide">
               {["Women's Archive", "Men's Wardrobe", "Summer Edit", "Accessories", "The Sale Room"].map(item => (
                 <li key={item}>
                   <a className="hover:text-white transition-colors duration-300 flex items-center gap-3 group w-fit outline-none" href="#">
@@ -401,9 +502,9 @@ export function Footer() {
             </ul>
           </motion.div>
 
-          <motion.div variants={fadeUpVariant} className="col-span-1 lg:col-span-2 space-y-6 lg:space-y-8 mt-4 lg:mt-0">
+          <motion.div variants={fadeUpVariant} className="col-span-1 lg:col-span-2 space-y-6 md:space-y-6 lg:space-y-6 mt-4 lg:mt-0">
             <h4 className="text-white font-body font-medium text-[8px] md:text-[9px] uppercase tracking-[0.3em] leading-relaxed">Support</h4>
-            <ul className="space-y-3 md:space-y-4 text-white/60 font-body text-[11px] md:text-xs font-light tracking-wide">
+            <ul className="space-y-3 md:space-y-4 lg:space-y-3 text-white/60 font-body text-[11px] md:text-xs font-light tracking-wide">
               {["Track Order", "Shipping Rules", "Returns", "Size Guide", "Contact Us"].map(item => (
                 <li key={item}>
                   <a className="hover:text-white transition-colors duration-300 flex items-center gap-3 group w-fit outline-none" href="#">
@@ -416,9 +517,9 @@ export function Footer() {
           </motion.div>
 
           {/* Contact / Location Column */}
-          <motion.div variants={fadeUpVariant} className="col-span-2 lg:col-span-3 space-y-6 lg:space-y-8 mt-6 md:mt-10 lg:mt-0">
+          <motion.div variants={fadeUpVariant} className="col-span-2 lg:col-span-3 space-y-6 lg:space-y-6 mt-6 md:mt-10 lg:mt-0">
             <h4 className="text-white font-body font-medium text-[8px] md:text-[9px] uppercase tracking-[0.3em] leading-relaxed">Concierge</h4>
-            <ul className="space-y-5 md:space-y-6 text-white/60 font-body text-[11px] md:text-xs font-light tracking-wide">
+            <ul className="space-y-5 md:space-y-6 lg:space-y-4 text-white/60 font-body text-[11px] md:text-xs font-light tracking-wide">
               <li className="flex items-start gap-3 md:gap-4 group cursor-pointer w-fit">
                 <MapPin className="w-4 h-4 stroke-[1.5] text-white/60 shrink-0 mt-0.5 group-hover:text-white transition-colors" />
                 <span className="leading-relaxed group-hover:text-white transition-colors">Studio 42, Hauz Khas Village,<br/>New Delhi, 110016</span>

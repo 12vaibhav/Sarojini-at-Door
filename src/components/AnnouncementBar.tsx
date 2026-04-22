@@ -12,7 +12,7 @@ export default function AnnouncementBar() {
   const repeatedNotices = [...notices, ...notices, ...notices, ...notices];
 
   return (
-    <div className="bg-on-surface text-surface py-2 overflow-hidden flex items-center relative z-[60] w-full h-10 drop-shadow-md">
+    <div className="bg-[#CDB5FF] text-deep-charcoal py-2 overflow-hidden flex items-center relative z-[60] w-full h-[32px] drop-shadow-md">
       <motion.div
         className="flex whitespace-nowrap"
         animate={{ x: ["0%", "-50%"] }}
@@ -25,20 +25,20 @@ export default function AnnouncementBar() {
         <div className="flex items-center">
           {repeatedNotices.map((text, i) => (
             <div key={`a-${i}`} className="flex items-center">
-              <span className="font-body text-[8px] md:text-[9px] font-medium tracking-[0.25em] uppercase px-6 lg:px-10">
+              <span className="font-body text-[9px] md:text-[10px] font-semibold tracking-[0.25em] uppercase px-6 lg:px-10">
                 {text}
               </span>
-              <div className="w-1 h-1 rounded-full bg-surface/30" />
+              <div className="w-1 h-1 rounded-full bg-deep-charcoal/30" />
             </div>
           ))}
         </div>
         <div className="flex items-center">
           {repeatedNotices.map((text, i) => (
             <div key={`b-${i}`} className="flex items-center">
-              <span className="font-body text-[8px] md:text-[9px] font-medium tracking-[0.25em] uppercase px-6 lg:px-10">
+              <span className="font-body text-[9px] md:text-[10px] font-semibold tracking-[0.25em] uppercase px-6 lg:px-10">
                 {text}
               </span>
-              <div className="w-1 h-1 rounded-full bg-surface/30" />
+              <div className="w-1 h-1 rounded-full bg-deep-charcoal/30" />
             </div>
           ))}
         </div>

@@ -54,9 +54,9 @@ export default function Navbar({ onHomeClick, view = 'home' }: { onHomeClick?: (
   const isSolid = view === 'product' || scrolled;
 
   return (
-    <div className="fixed top-0 w-full z-50 flex flex-col transition-all duration-500">
+    <div className="fixed top-0 w-full z-[1000] flex flex-col transition-all duration-500">
       <AnnouncementBar />
-      <nav className={`w-full transition-all duration-500 ${isSolid ? 'bg-black/80 backdrop-blur-md py-4' : 'bg-transparent py-8'}`}>
+      <nav className={`w-full transition-all duration-500 ${isSolid ? 'bg-black/80 backdrop-blur-md py-[18px] md:py-4' : 'bg-transparent py-[34px] md:py-8'}`}>
         <div className="flex justify-between items-center px-6 md:px-10 lg:px-16 max-w-screen-2xl mx-auto">
           
           {/* Mobile Menu Button - Left on mobile */}
